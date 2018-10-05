@@ -1,7 +1,7 @@
 ﻿using Empleate.Data;
 using Empleate.Models;
 using Empleate.Repository.Interface;
-using System;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
 namespace Empleate.Repository
@@ -22,7 +22,8 @@ namespace Empleate.Repository
 
         public Profesion FindProfesionByDescription(string description)
         {
-            return Context.Profesiones.Where(c => c.Descripcion.Contains(description)).FirstOrDefault();
+            return Context.Profesiones.Where(c => c.Descripcion.Contains(description)).Include(e => e.Empleados).FirstOrDefault();
         }
+
     }
 }
