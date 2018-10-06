@@ -1,0 +1,4 @@
+add-migration initial
+update-database
+
+build the project
