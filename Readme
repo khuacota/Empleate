@@ -1,4 +1,6 @@
-add-migration initial
-update-database
+tools-> nuget package manager-> package manager console
+
+PM>add-migration initial
+PM>update-database
 
 build the project
