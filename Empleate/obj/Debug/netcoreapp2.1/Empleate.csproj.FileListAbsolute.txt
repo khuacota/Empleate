@@ -12,3 +12,17 @@ C:\Users\karem\source\repos\Empleate\Empleate\obj\Debug\netcoreapp2.1\Empleate.R
 C:\Users\karem\source\repos\Empleate\Empleate\bin\Debug\netcoreapp2.1\Empleate.pdb
 C:\Users\karem\source\repos\Empleate\Empleate\obj\Debug\netcoreapp2.1\Empleate.dll
 C:\Users\karem\source\repos\Empleate\Empleate\obj\Debug\netcoreapp2.1\Empleate.pdb
+C:\Users\Farzor520\source\repos\Empleate\Empleate\obj\Debug\netcoreapp2.1\Empleate.dll
+C:\Users\Farzor520\source\repos\Empleate\Empleate\obj\Debug\netcoreapp2.1\Empleate.pdb
+C:\Users\Farzor520\source\repos\Empleate\Empleate\bin\Debug\netcoreapp2.1\Empleate.deps.json
+C:\Users\Farzor520\source\repos\Empleate\Empleate\bin\Debug\netcoreapp2.1\Empleate.runtimeconfig.json
+C:\Users\Farzor520\source\repos\Empleate\Empleate\bin\Debug\netcoreapp2.1\Empleate.runtimeconfig.dev.json
+C:\Users\Farzor520\source\repos\Empleate\Empleate\bin\Debug\netcoreapp2.1\Empleate.dll
+C:\Users\Farzor520\source\repos\Empleate\Empleate\bin\Debug\netcoreapp2.1\Empleate.pdb
+C:\Users\Farzor520\source\repos\Empleate\Empleate\obj\Debug\netcoreapp2.1\Empleate.csprojAssemblyReference.cache
+C:\Users\Farzor520\source\repos\Empleate\Empleate\obj\Debug\netcoreapp2.1\Empleate.csproj.CoreCompileInputs.cache
+C:\Users\Farzor520\source\repos\Empleate\Empleate\obj\Debug\netcoreapp2.1\Empleate.RazorAssemblyInfo.cache
+C:\Users\Farzor520\source\repos\Empleate\Empleate\obj\Debug\netcoreapp2.1\Empleate.RazorAssemblyInfo.cs
+C:\Users\Farzor520\source\repos\Empleate\Empleate\obj\Debug\netcoreapp2.1\Empleate.AssemblyInfoInputs.cache
+C:\Users\Farzor520\source\repos\Empleate\Empleate\obj\Debug\netcoreapp2.1\Empleate.AssemblyInfo.cs
+C:\Users\Farzor520\source\repos\Empleate\Empleate\obj\Debug\netcoreapp2.1\Empleate.RazorTargetAssemblyInfo.cache
