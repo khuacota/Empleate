@@ -4,15 +4,11 @@
 ('Informatico'),
 ('Sistemas'),
 ('Quimico'),
-('Bioquimico'),
 ('Medico'),
 ('Biologo'),
 ('Fisico'),
 ('Matematico'),
-('Fisioterapeuta'),
 ('Doctor'),
-('Veterinario'),
-('Odontologo'),
 ('Abogado');
 
 insert into Empleados (Nombre, Apellidos, Telefono, Correo, ProfesionId) values
@@ -21,14 +17,24 @@ insert into Empleados (Nombre, Apellidos, Telefono, Correo, ProfesionId) values
 ('Fabio', 'Guerra', 73499112, 'fabio.guerra@gmail.com', 3),
 ('David', 'Sanguino', 73499113, 'david.sanguino@gmail.com', 3),
 ('Gary', 'Antezana', 72252682, 'gary.antezana@gmail.com', 3),
-('Orlando', 'Lopez', 72252683, 'orlando.lopez@gmail.com', 3),
+('Orlando', 'Lopez', 72252683, 'orlando.lopez@gmail.com', 1),
 ('Leonardo', 'Leon', 73499222, 'leonardo.leon@gmail.com', 4),
 ('Carla', 'Chavez', 73499224, 'carla.chavez@gmail.com', 4),
-('Richard', 'Lopez', 73499115, 'richard.lopez@gmail.com', 4),
-('Carlos', 'Ramos', 73499120, 'carlos.ramos@gmail.com', 4),
+('Richard', 'Lopez', 73499115, 'richard.lopez@gmail.com', 5),
+('Carlos', 'Ramos', 73499120, 'carlos.ramos@gmail.com', 6),
 ('Alicia', 'Limachi', 73499115, 'alicia.limachi@gmail.com', 7),
-('Regina', 'Ayca', 73499116, 'regina.ayca@gmail.com', 1),
-('Roger', 'Flores', 73499118, 'roger.flores@gmail.com', 10),
-('Ana', 'Vargas', 73489116, 'ana.vargas@gmail.com', 2);
-
-
+('Regina', 'Ayca', 73499116, 'regina.ayca@gmail.com', 7),
+('Roger', 'Flores', 73499118, 'roger.flores@gmail.com', 7),
+('Ana', 'Vargas', 73489116, 'ana.vargas@gmail.com', 7);
+('Pablo', 'Escobar', 74804752, 'pescoabr@gmail.com', 4);
+('Juan', 'Guerra', 70786534, 'jguerra@gmail.com', 8);
+('Kelly','Salvatierra',70354875,'ksalvatierra@gmail.com',9);
+('Pedro','Camacho',72234509,'pcamacho@gmail.com',9);
+('Isrrael','Ruiz',70612354,'iruiz@gmail.com',9);
+('Jorge','Encinas',79312643,'jencinas@gmail.com',10);
+('Erick','Gonzales',75329538,'egonzales@gmail.com',11);
+('Gabriela','Caballero',78338401,'gcaballero',11);
+('Ronald','Marquez',74912357,'rmarquez@gmail.com',4);
+('Alexander','Mamani',70748385,'amamani@gmail.com',1);
+('Alvaro','Luniane',73309545,'aluriane@gmail.com',4);
+('Daniel','Saguez',79436739,'dsaguez@gmail.com',8);
