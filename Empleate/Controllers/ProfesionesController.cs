@@ -42,13 +42,17 @@ namespace Empleate.Controllers
         }
 
         [HttpGet("{description}")]
-        public IEnumerable<Empleado> EmpleadosByProfesion(string description)
+        public IActionResult EmpleadosByProfesion(string description)
         {
             var Empleados = new List<Empleado>();
             using (var repository = new ProfesionHandler(this._context))
             {
                 var profesion = repository.FindProfesionByDescription(description);
-                return profesion.Empleados;
+                if (profesion == null)
+                {
+                    return NotFound();
+                }
+                return Ok(profesion.Empleados);
             }
         }
 
