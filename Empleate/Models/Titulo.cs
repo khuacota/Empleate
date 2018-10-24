@@ -1,24 +1,25 @@
-﻿
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Empleate.Models
 {
-    public class Empleado
+    public class Titulo
     {
         [Key]
         [Column(Order = 1)]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        public string Nombre { get; set; }
+        public string grado { get; set; }
 
-        public string Apellidos { get; set; }
+        public string descripcion { get; set; }
 
-        public int Telefono { get; set; }
-
-        public string Correo { get; set; }
-        
+        public int EmpleadoId { get; set; }
+        [ForeignKey("EmpleadoId")]
+        public Profesion Empleado { get; set; }
     }
 }
