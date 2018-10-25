@@ -19,6 +19,10 @@ namespace Empleate.Models
         public int Telefono { get; set; }
 
         public string Correo { get; set; }
-        
+
+        public int ProfesionId { get; set; }
+        [ForeignKey("ProfesionId")]
+        public Profesion Profesion { get; set; }
+
     }
 }

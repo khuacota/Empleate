@@ -9,6 +9,8 @@ namespace Empleate.Data
         {
         }
 
+        
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -24,6 +26,12 @@ namespace Empleate.Data
         public DbSet<Empleado> Empleados { get; set; }
 
         public DbSet<Profesion> Profesiones { get; set; }
+
+        public DbSet<Experiencia> Experiencias { get; set; }
+
+        public DbSet<Language> Idiomas { get; set; }
+
+        public DbSet<Titulo> Titulos { get; set; }
 
     }
 }
