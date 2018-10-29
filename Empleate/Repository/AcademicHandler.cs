@@ -18,28 +18,46 @@ namespace Empleate.Repository
             this.DBContext = context;
         }
         
+        
         public void Create(Academico item)
         {
+
             if(item.Idiomas.Count < 1 || item.Titulos.Count < 1)
+            {
                 throw new Exception("invalid quantity");
+            }
+                
             foreach (var idioma in item.Idiomas)
             {
-                if (ValidIdioma(idioma))
-                    throw  new Exception("invalid language");
+                if (!ValidIdioma(idioma))
+                {
+                    throw new Exception("invalid language");
+                }
+                    
             }
             foreach (var titulo in item.Titulos)
             {
-                if (ValidTitulo(titulo))
+                if (!ValidTitulo(titulo))
+                {
+
                     throw new Exception("invalid title");
+                }
             }
             foreach (var exp in item.Experiencias)
             {
-                if (ValidExp(exp))
+                if (!ValidExp(exp))
+                {
                     throw new Exception("invalid experience");
+                }
+                    
             }
             this.DBContext.Titulos.AddRange(item.Titulos);
             this.DBContext.Idiomas.AddRange(item.Idiomas);
-            this.DBContext.Experiencias.AddRange(item.Experiencias);
+            if (item.Experiencias != null)
+            {
+                this.DBContext.Experiencias.AddRange(item.Experiencias);
+
+            }
             this.DBContext.SaveChanges();
         }
 

@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Empleate.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Empleate.Repository;
+using Empleate.Data;
 
 namespace Empleate.Controllers
 {
@@ -12,6 +14,12 @@ namespace Empleate.Controllers
     [ApiController]
     public class AcademicController : ControllerBase
     {
+        private AcademicHandler handler;
+
+        public AcademicController(AppDbContext context)
+        {
+            this.handler = new AcademicHandler(context);
+        }
         // GET: api/Academic
         [HttpGet]
         public IEnumerable<string> Get()
@@ -28,9 +36,18 @@ namespace Empleate.Controllers
 
         // POST: api/Academic
         [HttpPost]
-        public void Post([FromBody] Academico value)
+        public IActionResult Post([FromBody] Academico value)
         {
+            try
+            {
+                this.handler.Create(value);
+            }
+            catch(Exception e)
+            {
+                return BadRequest(e.Message);
+            }
 
+            return Ok();
         }
 
         // PUT: api/Academic/5
