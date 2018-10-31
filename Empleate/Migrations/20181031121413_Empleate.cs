@@ -4,23 +4,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Empleate.Migrations
 {
-    public partial class EmpleateDB : Migration
+    public partial class Empleate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "Profesiones",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Descripcion = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Profesiones", x => x.Id);
-                });
-
             migrationBuilder.CreateTable(
                 name: "Empleados",
                 columns: table => new
@@ -30,18 +17,11 @@ namespace Empleate.Migrations
                     Nombre = table.Column<string>(nullable: true),
                     Apellidos = table.Column<string>(nullable: true),
                     Telefono = table.Column<int>(nullable: false),
-                    Correo = table.Column<string>(nullable: true),
-                    ProfesionId = table.Column<int>(nullable: false)
+                    Correo = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Empleados", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Empleados_Profesiones_ProfesionId",
-                        column: x => x.ProfesionId,
-                        principalTable: "Profesiones",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -60,9 +40,9 @@ namespace Empleate.Migrations
                 {
                     table.PrimaryKey("PK_Experiencias", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Experiencias_Profesiones_EmpleadoId",
+                        name: "FK_Experiencias_Empleados_EmpleadoId",
                         column: x => x.EmpleadoId,
-                        principalTable: "Profesiones",
+                        principalTable: "Empleados",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -80,9 +60,9 @@ namespace Empleate.Migrations
                 {
                     table.PrimaryKey("PK_Idiomas", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Idiomas_Profesiones_EmpleadoId",
+                        name: "FK_Idiomas_Empleados_EmpleadoId",
                         column: x => x.EmpleadoId,
-                        principalTable: "Profesiones",
+                        principalTable: "Empleados",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -101,17 +81,12 @@ namespace Empleate.Migrations
                 {
                     table.PrimaryKey("PK_Titulos", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Titulos_Profesiones_EmpleadoId",
+                        name: "FK_Titulos_Empleados_EmpleadoId",
                         column: x => x.EmpleadoId,
-                        principalTable: "Profesiones",
+                        principalTable: "Empleados",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Empleados_ProfesionId",
-                table: "Empleados",
-                column: "ProfesionId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Experiencias_EmpleadoId",
@@ -132,9 +107,6 @@ namespace Empleate.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Empleados");
-
-            migrationBuilder.DropTable(
                 name: "Experiencias");
 
             migrationBuilder.DropTable(
@@ -144,7 +116,7 @@ namespace Empleate.Migrations
                 name: "Titulos");
 
             migrationBuilder.DropTable(
-                name: "Profesiones");
+                name: "Empleados");
         }
     }
 }

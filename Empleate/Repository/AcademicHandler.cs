@@ -18,7 +18,13 @@ namespace Empleate.Repository
             this.DBContext = context;
         }
         
-        
+        public void CreateEmpleado(Empleado item)
+        {
+            this.DBContext.Empleados.Add(item);
+
+            this.DBContext.SaveChanges();
+        }
+
         public void Create(Academico item)
         {
 

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Empleate.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20181028231307_EmpleateDB")]
-    partial class EmpleateDB
+    [Migration("20181031121413_Empleate")]
+    partial class Empleate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -33,13 +33,9 @@ namespace Empleate.Migrations
 
                     b.Property<string>("Nombre");
 
-                    b.Property<int>("ProfesionId");
-
                     b.Property<int>("Telefono");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ProfesionId");
 
                     b.ToTable("Empleados");
                 });
@@ -84,19 +80,6 @@ namespace Empleate.Migrations
                     b.ToTable("Idiomas");
                 });
 
-            modelBuilder.Entity("Empleate.Models.Profesion", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Descripcion");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Profesiones");
-                });
-
             modelBuilder.Entity("Empleate.Models.Titulo", b =>
                 {
                     b.Property<int>("Id")
@@ -116,17 +99,9 @@ namespace Empleate.Migrations
                     b.ToTable("Titulos");
                 });
 
-            modelBuilder.Entity("Empleate.Models.Empleado", b =>
-                {
-                    b.HasOne("Empleate.Models.Profesion", "Profesion")
-                        .WithMany("Empleados")
-                        .HasForeignKey("ProfesionId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("Empleate.Models.Experiencia", b =>
                 {
-                    b.HasOne("Empleate.Models.Profesion", "Empleado")
+                    b.HasOne("Empleate.Models.Empleado", "Empleado")
                         .WithMany()
                         .HasForeignKey("EmpleadoId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -134,7 +109,7 @@ namespace Empleate.Migrations
 
             modelBuilder.Entity("Empleate.Models.Language", b =>
                 {
-                    b.HasOne("Empleate.Models.Profesion", "Empleado")
+                    b.HasOne("Empleate.Models.Empleado", "Empleado")
                         .WithMany()
                         .HasForeignKey("EmpleadoId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -142,7 +117,7 @@ namespace Empleate.Migrations
 
             modelBuilder.Entity("Empleate.Models.Titulo", b =>
                 {
-                    b.HasOne("Empleate.Models.Profesion", "Empleado")
+                    b.HasOne("Empleate.Models.Empleado", "Empleado")
                         .WithMany()
                         .HasForeignKey("EmpleadoId")
                         .OnDelete(DeleteBehavior.Cascade);

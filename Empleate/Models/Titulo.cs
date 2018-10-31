@@ -20,6 +20,6 @@ namespace Empleate.Models
 
         public int EmpleadoId { get; set; }
         [ForeignKey("EmpleadoId")]
-        public Profesion Empleado { get; set; }
+        public Empleado Empleado { get; set; }
     }
 }

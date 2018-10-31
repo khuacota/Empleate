@@ -44,9 +44,17 @@ namespace Empleate.Controllers
             }
             catch(Exception e)
             {
-                return BadRequest(e.Message);
+                return BadRequest(e);
             }
 
+            return Ok();
+        }
+        // POST: api/Academic
+        [HttpPost("Empleado")]
+        public IActionResult PostEmpleado([FromBody] Empleado value)
+        {
+
+            this.handler.CreateEmpleado(value);
             return Ok();
         }
 
