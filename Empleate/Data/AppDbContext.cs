@@ -24,5 +24,7 @@ namespace Empleate.Data
 
         public DbSet<Titulo> Titulos { get; set; }
 
+        public DbSet<HabilidadEmpleado> HabilidadEmp { get; set; }
+
     }
 }

@@ -14,5 +14,7 @@ namespace Empleate.Models
         public ICollection<Language> Idiomas { get; set; }
 
         public ICollection<Titulo> Titulos { get; set; }
+
+        public ICollection<HabilidadEmpleado> Habilidades { get; set; }
     }
 }

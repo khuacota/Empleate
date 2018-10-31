@@ -35,7 +35,7 @@ namespace Empleate.Repository
                 
             foreach (var idioma in item.Idiomas)
             {
-                if (!ValidIdioma(idioma))
+                if (!ValidIdioma(idioma) && idioma.EmpleadoId != item.EmpleadoId)
                 {
                     throw new Exception("invalid language");
                 }
@@ -43,7 +43,7 @@ namespace Empleate.Repository
             }
             foreach (var titulo in item.Titulos)
             {
-                if (!ValidTitulo(titulo))
+                if (!ValidTitulo(titulo) &&  titulo.EmpleadoId != item.EmpleadoId)
                 {
 
                     throw new Exception("invalid title");
@@ -51,7 +51,7 @@ namespace Empleate.Repository
             }
             foreach (var exp in item.Experiencias)
             {
-                if (!ValidExp(exp))
+                if (!ValidExp(exp) && exp.EmpleadoId != item.EmpleadoId)
                 {
                     throw new Exception("invalid experience");
                 }
@@ -62,6 +62,11 @@ namespace Empleate.Repository
             if (item.Experiencias != null)
             {
                 this.DBContext.Experiencias.AddRange(item.Experiencias);
+
+            }
+            if (item.Habilidades != null)
+            {
+                this.DBContext.HabilidadEmp.AddRange(item.Habilidades);
 
             }
             this.DBContext.SaveChanges();
