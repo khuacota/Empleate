@@ -14,13 +14,13 @@ namespace Empleate.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        public string lugar { get; set; }
+        public string Lugar { get; set; }
 
-        public string cargo { get; set; }
+        public string Cargo { get; set; }
 
-        public DateTime inicio { get; set; }
+        public DateTime Inicio { get; set; }
 
-        public DateTime fin { get; set; }
+        public DateTime Fin { get; set; }
 
         public int EmpleadoId { get; set; }
         [ForeignKey("EmpleadoId")]

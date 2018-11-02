@@ -76,9 +76,9 @@ namespace Empleate.Repository
         {
             Boolean res = true;
             Regex regex = new Regex(@"^[a-zA-Z][a-zA-Z0-9]*$");
-            res &= regex.IsMatch(titulo.descripcion);
+            res &= regex.IsMatch(titulo.Descripcion);
             regex = new Regex(@"^[a-zA-Z][a-zA-Z]*$");
-            res &= regex.IsMatch(titulo.grado);
+            res &= regex.IsMatch(titulo.Grado);
             return res;
         }
 
@@ -86,11 +86,11 @@ namespace Empleate.Repository
         {
             Boolean res = true;
             Regex regex = new Regex(@"^[a-zA-Z][a-zA-Z0-9]*$");
-            res &= regex.IsMatch(exp.lugar);
+            res &= regex.IsMatch(exp.Lugar);
             regex = new Regex(@"^[a-zA-Z][a-zA-Z]*$");
-            res &= regex.IsMatch(exp.cargo);
-            res &= DateTime.Compare(exp.inicio,exp.fin) < 0;
-            res &= DateTime.Compare(exp.fin, DateTime.Today) <= 0;
+            res &= regex.IsMatch(exp.Cargo);
+            res &= DateTime.Compare(exp.Inicio,exp.Fin) < 0;
+            res &= DateTime.Compare(exp.Fin, DateTime.Today) <= 0;
             return res;
         }
 
@@ -98,7 +98,7 @@ namespace Empleate.Repository
         {
             Boolean res = true;
             Regex regex = new Regex(@"^[a-zA-Z][a-zA-Z]*$");
-            res &= regex.IsMatch(idioma.idioma);
+            res &= regex.IsMatch(idioma.Idioma);
             return res;
         }
     }

@@ -15,7 +15,7 @@ namespace Empleate.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        public string idioma { get; set; }
+        public string Idioma { get; set; }
 
         public int EmpleadoId { get; set; }
         [ForeignKey("EmpleadoId")]
