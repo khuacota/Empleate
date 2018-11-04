@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Empleate.Repository
 {
-    public class ProfesionHandler : EmpleateHandler<Profesion>, IProfesion
+    public class ProfesionHandler : EmpleateHandler<Profesion>
     {
 
         public ProfesionHandler(AppDbContext context) : base(context) { }
@@ -19,11 +19,11 @@ namespace Empleate.Repository
         public void Dispose()
         {
         }
-
+        /*
         public Profesion FindProfesionByDescription(string description)
         {
             return Context.Profesiones.Where(c => c.Descripcion.Contains(description)).Include(e => e.Empleados).FirstOrDefault();
-        }
+        }*/
 
     }
 }

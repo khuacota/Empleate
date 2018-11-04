@@ -10,7 +10,7 @@ using Empleate.Models;
 
 namespace Empleate.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("empleados")]
     [ApiController]
     public class EmpleadosController : ControllerBase
     {
@@ -82,7 +82,6 @@ namespace Empleate.Controllers
             return NoContent();
         }
 
-        // POST: api/Empleados
         [HttpPost]
         public async Task<IActionResult> PostEmpleado([FromBody] Empleado empleado)
         {

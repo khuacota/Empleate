@@ -8,6 +8,6 @@ namespace Empleate.Models
 
         public string Descripcion { get; set; }
 
-        public ICollection<Empleado> Empleados { get; set; }
+        //public ICollection<Empleado> Empleados { get; set; }
     }
 }

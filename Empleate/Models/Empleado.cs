@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Empleate.Validators;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -12,12 +13,16 @@ namespace Empleate.Models
         public int Id { get; set; }
 
         [Required]
+        [RegularExpression(@"^[a-z\sA-Z]+$", ErrorMessage = "Nombre solo debe ser nombre")]
         public string Nombre { get; set; }
 
         [Required]
+        [RegularExpression(@"^[a-z\sA-Z]+$", ErrorMessage = "Apellidos debe ser solo texto")]
         public string Apellidos { get; set; }
 
         [Required]
+        [AgeCheck]
+        [DataType(DataType.Date)]
         public DateTime FechaNacimiento { get; set; }
 
         [Required]
@@ -27,22 +32,21 @@ namespace Empleate.Models
         public string EstadoCivil { get; set; }
 
         [Required]
+        [RegularExpression(@"^[6-7]{1}[0-9]{7}$", ErrorMessage = "Numero de celular debe empezar con 6 o 7")]
         public int Celular { get; set; }
 
         [Required]
-        public int Ciudad { get; set; }
+        public string Ciudad { get; set; }
 
         [Required]
-        public int Direccion { get; set; }
+        public string Direccion { get; set; }
 
         [Required]
+        [EmailAddress]
         public string Correo { get; set; }
 
         [Required]
+        [RegularExpression(@".+\.(jpg|png|gif)$", ErrorMessage = "Formato de imagen invalido")]
         public string Imagen { get; set; }
-
-        public int ProfesionId { get; set; }
-        [ForeignKey("ProfesionId")]
-        public Profesion Profesion { get; set; }
     }
 }

@@ -20,7 +20,7 @@ namespace Empleate.Controllers
             _context = context;
         }
 
-
+        /*
         public IActionResult GetProfesionesByDescription(string description)
         {
             using (var repository = new ProfesionHandler(this._context))
@@ -32,8 +32,8 @@ namespace Empleate.Controllers
                 }
                 return Ok(profesion);
             }
-        }
-
+        }*/
+        /*
         // GET: api/Profesiones
         [HttpGet]
         public IEnumerable<Profesion> GetProfesiones()
@@ -149,6 +149,6 @@ namespace Empleate.Controllers
         private bool ProfesionExists(int id)
         {
             return _context.Profesiones.Any(e => e.Id == id);
-        }
+        }*/
     }
 }
