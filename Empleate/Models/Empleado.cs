@@ -13,11 +13,11 @@ namespace Empleate.Models
         public int Id { get; set; }
 
         [Required]
-        [RegularExpression(RegularExpressions.TextValidation, ErrorMessage = "Nombre solo debe ser nombre")]
+        [RegularExpression(RegularExpression.TextValidation, ErrorMessage = "Nombre solo debe ser nombre")]
         public string Nombre { get; set; }
 
         [Required]
-        [RegularExpression(RegularExpressions.TextValidation, ErrorMessage = "Apellidos debe ser solo texto")]
+        [RegularExpression(RegularExpression.TextValidation, ErrorMessage = "Apellidos debe ser solo texto")]
         public string Apellidos { get; set; }
 
         [Required]
@@ -32,7 +32,7 @@ namespace Empleate.Models
         public string EstadoCivil { get; set; }
 
         [Required]
-        [RegularExpression(RegularExpressions.CellphoneValidation, ErrorMessage = "Numero de celular debe empezar con 6 o 7")]
+        [RegularExpression(RegularExpression.CellphoneValidation, ErrorMessage = "Numero de celular debe empezar con 6 o 7")]
         public int Celular { get; set; }
 
         [Required]
@@ -46,7 +46,7 @@ namespace Empleate.Models
         public string Correo { get; set; }
 
         [Required]
-        [RegularExpression(RegularExpressions.ImageValidation, ErrorMessage = "Formato de imagen invalido")]
+        [RegularExpression(RegularExpression.ImageValidation, ErrorMessage = "Formato de imagen invalido")]
         public string Imagen { get; set; }
     }
 }
