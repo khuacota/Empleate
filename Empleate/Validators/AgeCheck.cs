@@ -22,17 +22,12 @@ namespace Empleate.Validators
 
             if (edad < EDADMINIMA)
             {
-                return new ValidationResult(FechaNacimientoInvalido ??
-                                        "Fecha de nacimiento inválido");
+                return new ValidationResult(FechaNacimientoInvalido ?? "Fecha de nacimiento inválido");
             }
 
             return ValidationResult.Success;
         }
 
-        private ValidationResult GetErrorMessage()
-        {
-            throw new NotImplementedException();
-        }
     }
 
 
