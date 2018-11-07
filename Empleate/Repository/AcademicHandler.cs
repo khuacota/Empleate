@@ -27,17 +27,21 @@ namespace Empleate.Repository
 
         public void Create(Academico item)
         {
-
-            if(item.Idiomas.Count < 1 || item.Titulos.Count < 1)
+            var result =  this.DBContext.Idiomas.Where(idioma => idioma.EmpleadoId == item.EmpleadoId).ToList();
+            if (result.ToArray().Length > 0)
             {
-                throw new Exception("invalid quantity");
+                throw new Exception("esta cuenta ya tiene informacion academica");
+            }
+            if (item.Idiomas.Count < 1 || item.Titulos.Count < 1)
+            {
+                throw new Exception("necesitas minimo 1 titulo e idioma");
             }
                 
             foreach (var idioma in item.Idiomas)
             {
                 if (!ValidIdioma(idioma) && idioma.EmpleadoId != item.EmpleadoId)
                 {
-                    throw new Exception("invalid language");
+                    throw new Exception("idioma invalido");
                 }
                     
             }
@@ -46,14 +50,14 @@ namespace Empleate.Repository
                 if (!ValidTitulo(titulo) &&  titulo.EmpleadoId != item.EmpleadoId)
                 {
 
-                    throw new Exception("invalid title");
+                    throw new Exception("titulo invalido");
                 }
             }
             foreach (var exp in item.Experiencias)
             {
                 if (!ValidExp(exp) && exp.EmpleadoId != item.EmpleadoId)
                 {
-                    throw new Exception("invalid experience");
+                    throw new Exception("experiencia invalida");
                 }
                     
             }
