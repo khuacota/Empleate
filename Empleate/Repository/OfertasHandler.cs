@@ -37,6 +37,7 @@ namespace Empleate.Repository
 
             var oferta = new OfertaTrabajo() { 
                 EmpresaId = item.EmpresaId,
+                Descripcion = item.Descripcion,
                 Ciudad = item.Ciudad,
                 ExperienciaMin = item.ExperienciaMin,
                 FechaLimite = item.FechaLimite,

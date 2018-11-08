@@ -14,15 +14,15 @@ namespace Empleate.Controllers
     [ApiController]
     public class OfertaController : Controller
     {
-        private AcademicHandler handler;
+        private OfertasHandler handler;
 
         public OfertaController(AppDbContext context)
         {
-            this.handler = new AcademicHandler(context);
+            this.handler = new OfertasHandler(context);
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] Academico value)
+        public IActionResult Post([FromBody] OfertaTrabajoModel value)
         {
             try
             {
