@@ -38,6 +38,10 @@ namespace Empleate.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] Academico value)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             try
             {
                 this.handler.Create(value);
@@ -50,14 +54,7 @@ namespace Empleate.Controllers
             return Ok();
         }
 
-        // POST: api/Academic
-        [HttpPost("Empleado")]
-        public IActionResult PostEmpleado([FromBody] Empleado value)
-        {
-            this.handler.CreateEmpleado(value);
-            return Ok();
-        }
-
+        
         // PUT: api/Academic/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)

@@ -24,6 +24,10 @@ namespace Empleate.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] OfertaTrabajoModel value)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             try
             {
                 this.handler.Create(value);

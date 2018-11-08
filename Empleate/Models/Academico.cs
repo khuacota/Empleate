@@ -10,15 +10,15 @@ namespace Empleate.Models
 {
     public class Academico
     {
-        [Required(ErrorMessage = "id de Empleado es requerido")]
+        [Required(ErrorMessage = "Id de Empleado es requerido")]
         public int EmpleadoId { get; set; }
 
         public ICollection<Experiencia> Experiencias { get; set; }
 
-        [Required(ErrorMessage = "almenos 1 idioma es requerido")]
+        [Required(ErrorMessage = "Almenos 1 idioma es requerido")]
         public ICollection<Language> Idiomas { get; set; }
 
-        [Required(ErrorMessage = "almenos 1 titulo es requerido")]
+        [Required(ErrorMessage = "Almenos 1 titulo es requerido")]
         public ICollection<Titulo> Titulos { get; set; }
         
         public ICollection<HabilidadEmpleado> Habilidades { get; set; }

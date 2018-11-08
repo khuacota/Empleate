@@ -16,8 +16,8 @@ namespace Empleate.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-
-        [RegularExpression(RegularExpression.TextValidation, ErrorMessage = "idioma debe ser texto")]
+        [Required(ErrorMessage = "Idioma es requerido")]
+        [RegularExpression(RegularExpression.TextValidation, ErrorMessage = "Idioma debe ser texto")]
         public string Idioma { get; set; }
 
         public int EmpleadoId { get; set; }

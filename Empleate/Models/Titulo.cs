@@ -15,10 +15,12 @@ namespace Empleate.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
+        [Required(ErrorMessage = "Grado es requerido")]
+        [RegularExpression(RegularExpression.TextValidation, ErrorMessage = "Grado debe ser texto")]
         public string Grado { get; set; }
 
 
-        [RegularExpression(RegularExpression.NumTextValidation, ErrorMessage = "grado debe ser texto alfanumerico")]
+        [Required(ErrorMessage = "Descripcion es requerido")]
         public string Descripcion { get; set; }
 
         public int EmpleadoId { get; set; }
