@@ -48,7 +48,7 @@ namespace Empleate.Controllers
             }
             catch(Exception e)
             {
-                return BadRequest(e);
+                return BadRequest(e.Message);
             }
 
             return Ok();
