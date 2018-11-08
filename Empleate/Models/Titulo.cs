@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Empleate.Validators;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -14,8 +15,12 @@ namespace Empleate.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
+        [Required(ErrorMessage = "Grado es requerido")]
+        [RegularExpression(RegularExpression.TextValidation, ErrorMessage = "Grado debe ser texto")]
         public string Grado { get; set; }
 
+
+        [Required(ErrorMessage = "Descripcion es requerido")]
         public string Descripcion { get; set; }
 
         public int EmpleadoId { get; set; }
