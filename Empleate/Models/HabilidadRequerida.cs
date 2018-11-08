@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Empleate.Models
 {
-    public class HabilidadEmpleado
+    public class HabilidadRequerida
     {
 
         [Key]
@@ -19,8 +19,6 @@ namespace Empleate.Models
         [Required(ErrorMessage = "Habilidad es requerido")]
         public string Habilidad { get; set; }
 
-        public int EmpleadoId { get; set; }
-        [ForeignKey("EmpleadoId")]
-        public Empleado Empleado { get; set; }
+        public int OfertaId { get; set; }
     }
 }
