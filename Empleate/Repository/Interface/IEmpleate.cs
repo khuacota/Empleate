@@ -15,6 +15,5 @@ namespace Empleate.Repository.Interface
 
         void Remove(SUEntity sUEntity);
         void RemoveRange(IEnumerable<SUEntity> sUEntities);
-
     }
 }

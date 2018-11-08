@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using Empleate.Validators;
 
 namespace Empleate.Models
 {
@@ -15,6 +16,8 @@ namespace Empleate.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
+
+        [RegularExpression(RegularExpression.TextValidation, ErrorMessage = "idioma debe ser texto")]
         public string Idioma { get; set; }
 
         public int EmpleadoId { get; set; }

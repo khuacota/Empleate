@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Empleate.Validators;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -16,6 +17,8 @@ namespace Empleate.Models
 
         public string Grado { get; set; }
 
+
+        [RegularExpression(RegularExpression.NumTextValidation, ErrorMessage = "grado debe ser texto alfanumerico")]
         public string Descripcion { get; set; }
 
         public int EmpleadoId { get; set; }
