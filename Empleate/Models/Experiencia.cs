@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Empleate.Validators;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -16,6 +17,8 @@ namespace Empleate.Models
 
         public string Lugar { get; set; }
 
+
+        [RegularExpression(RegularExpression.TextValidation, ErrorMessage = "cargo debe ser texto")]
         public string Cargo { get; set; }
 
         public DateTime Inicio { get; set; }
