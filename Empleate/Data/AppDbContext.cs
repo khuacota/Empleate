@@ -8,9 +8,7 @@ namespace Empleate.Data
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
         }
-
         
-
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -32,5 +30,6 @@ namespace Empleate.Data
 
         public DbSet<HabilidadRequerida> HabilidadesRequeridas { get; set; }
 
+        public DbSet<Empresa> Empresas { get; set; }
     }
 }
