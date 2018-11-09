@@ -39,7 +39,7 @@ namespace Empleate.Repository
                 
             foreach (var idioma in item.Idiomas)
             {
-                if (!ValidIdioma(idioma) && idioma.EmpleadoId != item.EmpleadoId)
+                if (idioma.EmpleadoId != item.EmpleadoId)
                 {
                     throw new Exception("idioma invalido");
                 }
@@ -47,7 +47,7 @@ namespace Empleate.Repository
             }
             foreach (var titulo in item.Titulos)
             {
-                if (!ValidTitulo(titulo) &&  titulo.EmpleadoId != item.EmpleadoId)
+                if (titulo.EmpleadoId != item.EmpleadoId)
                 {
 
                     throw new Exception("titulo invalido");
@@ -89,10 +89,6 @@ namespace Empleate.Repository
         public Boolean ValidExp(Experiencia exp)
         {
             Boolean res = true;
-            Regex regex = new Regex(@"^[a-zA-Z][a-zA-Z0-9]*$");
-            res &= regex.IsMatch(exp.Lugar);
-            regex = new Regex(@"^[a-zA-Z][a-zA-Z]*$");
-            res &= regex.IsMatch(exp.Cargo);
             res &= DateTime.Compare(exp.Inicio,exp.Fin) < 0;
             res &= DateTime.Compare(exp.Fin, DateTime.Today) <= 0;
             return res;
