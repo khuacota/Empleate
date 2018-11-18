@@ -17,10 +17,11 @@ namespace Empleate.Models
 
         [Required(ErrorMessage = "Almenos 1 idioma es requerido")]
         public ICollection<Language> Idiomas { get; set; }
-
-        [Required(ErrorMessage = "Almenos 1 titulo es requerido")]
-        public ICollection<Titulo> Titulos { get; set; }
         
+        public ICollection<Titulo> Titulos { get; set; }
+
+        public ICollection<OcupacionEmpleado> Ocupaciones { get; set; }
+
         public ICollection<HabilidadEmpleado> Habilidades { get; set; }
     }
 }

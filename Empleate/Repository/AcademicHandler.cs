@@ -27,14 +27,14 @@ namespace Empleate.Repository
 
         public void Create(Academico item)
         {
-            var result =  this.DBContext.Idiomas.Where(idioma => idioma.EmpleadoId == item.EmpleadoId).ToList();
-            if (result.ToArray().Length > 0)
-            {
-                throw new Exception("esta cuenta ya tiene informacion academica");
-            }
             if (item.Idiomas.Count < 1 || item.Titulos.Count < 1)
             {
-                throw new Exception("necesitas minimo 1 titulo e idioma");
+                throw new Exception("necesitas minimo 1 idioma");
+            }
+            if (item.Ocupaciones.Count < 1 && item.Titulos.Count < 1)
+            {
+                throw new Exception("necesitas minimo 1 titulo u ocupacion");
+
             }
                 
             foreach (var idioma in item.Idiomas)
@@ -53,6 +53,13 @@ namespace Empleate.Repository
                     throw new Exception("titulo invalido");
                 }
             }
+            foreach (var ocupacion in item.Ocupaciones)
+            {
+                if (ocupacion.EmpleadoId != item.EmpleadoId)
+                {
+                    throw new Exception("ocupacion invalido");
+                }
+            }
             foreach (var exp in item.Experiencias)
             {
                 if (!ValidExp(exp) && exp.EmpleadoId != item.EmpleadoId)
@@ -61,13 +68,23 @@ namespace Empleate.Repository
                 }
                     
             }
-            this.DBContext.Titulos.AddRange(item.Titulos);
             this.DBContext.Idiomas.AddRange(item.Idiomas);
             if (item.Experiencias != null)
             {
                 this.DBContext.Experiencias.AddRange(item.Experiencias);
 
             }
+            if (item.Titulos != null)
+            {
+                this.DBContext.Titulos.AddRange(item.Titulos);
+
+            }
+            if (item.Ocupaciones != null)
+            {
+                this.DBContext.OcupacionesEmpleados.AddRange(item.Ocupaciones);
+
+            }
+
             if (item.Habilidades != null)
             {
                 this.DBContext.HabilidadEmp.AddRange(item.Habilidades);
