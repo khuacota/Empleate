@@ -18,6 +18,44 @@ namespace Empleate.Repository
             this.DBContext = context;
         }
 
+        public ICollection<JobOfferModel> filterByCompany(string[] searchWords)
+        {
+            var companies = this.DBContext.Empresas.ToList();
+            var companiesres = new List<Company>();
+            var jobOffers = new List<JobOffer>();
+            foreach (var company in companies)
+            {
+                foreach(var word in searchWords)
+                {
+                    if (company.Name.Contains(word))
+                    {
+                        companiesres.Add(company);   
+                    }
+                }
+            }
+            foreach(var company in companiesres)
+            {
+                jobOffers.AddRange(this.DBContext.Ofertas.Where(offer => offer.CompanyId == company.Id).ToList());
+            }
+            var results = new List<JobOfferModel>();
+            foreach (var jobOffer in jobOffers)
+            {
+                var job = new JobOfferModel() {
+                    City = jobOffer.City,
+                    CompanyId = jobOffer.CompanyId,
+                    Deadline = jobOffer.Deadline,
+                    Description = jobOffer.Description,
+                    EndTime = jobOffer.EndTime,
+                    MinExperience = jobOffer.MinExperience,
+                    Profession = jobOffer.Profession,
+                    StartTime = jobOffer.StartTime
+                };
+
+            }
+            return results;
+        }
+
+
         public void Create(JobOfferModel item)
         {
 

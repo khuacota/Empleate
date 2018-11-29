@@ -21,6 +21,14 @@ namespace Empleate.Controllers
             this.handler = new OfertasHandler(context);
         }
 
+        [HttpGet("search")]
+        public IActionResult GetJobsByCompany([FromQuery] string[] searchWord)
+        {
+
+
+            return Ok(searchWord);
+        }
+
         [HttpPost]
         public IActionResult Post([FromBody] JobOfferModel value)
         {

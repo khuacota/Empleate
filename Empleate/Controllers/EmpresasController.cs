@@ -19,6 +19,8 @@ namespace Empleate.Controllers
             _context = context;
         }
 
+        
+
         [HttpGet]
         public IEnumerable<Company> GetEmpresas()
         {
