@@ -50,7 +50,9 @@ namespace Empleate.Repository
                     Profession = jobOffer.Profession,
                     StartTime = jobOffer.StartTime
                 };
-
+                job.ReqLanguages = this.DBContext.IdiomasRequeridos.Where(offer => offer.OfferId == jobOffer.CompanyId).ToList();
+                job.ReqSkills = this.DBContext.HabilidadesRequeridas.Where(offer => offer.OfferId == jobOffer.CompanyId).ToList();
+                results.Add(job);
             }
             return results;
         }

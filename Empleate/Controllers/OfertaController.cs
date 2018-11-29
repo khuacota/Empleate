@@ -25,8 +25,8 @@ namespace Empleate.Controllers
         public IActionResult GetJobsByCompany([FromQuery] string[] searchWord)
         {
 
-
-            return Ok(searchWord);
+            var results = this.handler.filterByCompany(searchWord);
+            return Ok(results);
         }
 
         [HttpPost]
