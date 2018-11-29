@@ -31,5 +31,7 @@ namespace Empleate.Data
         public DbSet<SkillJob> HabilidadesRequeridas { get; set; }
 
         public DbSet<Company> Empresas { get; set; }
+
+        public DbSet<OcupacionEmpleado> OcupacionesEmpleados { get; set; }
     }
 }
