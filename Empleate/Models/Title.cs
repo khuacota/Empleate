@@ -13,7 +13,7 @@ namespace Empleate.Models
 
         [Required(ErrorMessage = "Grado es requerido")]
         [RegularExpression(RegularExpression.TextValidation, ErrorMessage = "Grade debe ser texto")]
-        public string Grade { get; set; }
+        public string Degree { get; set; }
 
 
         [Required(ErrorMessage = "Descripcion es requerido")]

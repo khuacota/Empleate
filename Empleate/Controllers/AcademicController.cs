@@ -29,9 +29,18 @@ namespace Empleate.Controllers
 
         // GET: api/Academic/5
         [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        public IActionResult Get(int id)
         {
-            return "value";
+            try
+            {
+                var result = this.handler.GetOne(id);
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+            
         }
 
         // POST: api/Academic

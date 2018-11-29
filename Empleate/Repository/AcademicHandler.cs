@@ -18,20 +18,24 @@ namespace Empleate.Repository
             this.DBContext = context;
         }
         
-        public void CreateEmpleado(Employee item)
+        public Academic GetOne(int id)
         {
-            this.DBContext.Empleados.Add(item);
-
-            this.DBContext.SaveChanges();
+            var academic = new Academic();
+            var languages = this.DBContext.Idiomas.Where(idioma => idioma.EmployeeId == id).ToList();
+            var skills = this.DBContext.HabilidadEmp.Where(idioma => idioma.EmployeeId == id).ToList();
+            var degrees = this.DBContext.Titulos.Where(idioma => idioma.EmployeeId == id).ToList();
+            var experiences = this.DBContext.Experiencias.Where(idioma => idioma.EmployeeId == id).ToList();
+            academic.Degrees = degrees;
+            academic.Skills = skills;
+            academic.Languages = languages;
+            academic.Experiences = experiences;
+            return academic;
         }
 
         public void Create(Academic item)
         {
             var result =  this.DBContext.Idiomas.Where(idioma => idioma.EmployeeId == item.EmployeeId).ToList();
-            if (result.ToArray().Length > 0)
-            {
-                throw new Exception("esta cuenta ya tiene informacion academica");
-            }
+            
             if (item.Languages.Count < 1 || item.Degrees.Count < 1)
             {
                 throw new Exception("necesitas minimo 1 titulo e idioma");
@@ -76,29 +80,11 @@ namespace Empleate.Repository
             this.DBContext.SaveChanges();
         }
 
-        public Boolean ValidTitulo(Title titulo)
-        {
-            Boolean res = true;
-            Regex regex = new Regex(@"^[a-zA-Z][a-zA-Z0-9]*$");
-            res &= regex.IsMatch(titulo.Description);
-            regex = new Regex(@"^[a-zA-Z][a-zA-Z]*$");
-            res &= regex.IsMatch(titulo.Grade);
-            return res;
-        }
-
         public Boolean ValidExp(Experience exp)
         {
             Boolean res = true;
             res &= DateTime.Compare(exp.Inicio,exp.Fin) < 0;
             res &= DateTime.Compare(exp.Fin, DateTime.Today) <= 0;
-            return res;
-        }
-
-        public Boolean ValidIdioma(LanguageEmployee idioma)
-        {
-            Boolean res = true;
-            Regex regex = new Regex(@"^[a-zA-Z][a-zA-Z]*$");
-            res &= regex.IsMatch(idioma.Language);
             return res;
         }
     }
