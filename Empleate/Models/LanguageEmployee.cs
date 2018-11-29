@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using Empleate.Validators;
 using System.ComponentModel.DataAnnotations;
-using Empleate.Validators;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Empleate.Models
 {
-    public class LanguageRequerido
+    public class LanguageEmployee
     {
         [Key]
         [Column(Order = 1)]
@@ -18,9 +13,10 @@ namespace Empleate.Models
 
         [Required(ErrorMessage = "Idioma es requerido")]
         [RegularExpression(RegularExpression.TextValidation, ErrorMessage = "Idioma debe ser texto")]
-        public string Idioma { get; set; }
+        public string Language { get; set; }
 
-        public int OfertaId { get; set; }
-        
+        public int EmployeeId { get; set; }
+        [ForeignKey("EmployeeId")]
+        public Employee Employee { get; set; }
     }
 }

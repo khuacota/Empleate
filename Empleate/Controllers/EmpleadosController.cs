@@ -21,7 +21,7 @@ namespace Empleate.Controllers
 
         // GET: api/Empleados
         [HttpGet]
-        public IEnumerable<Empleado> GetEmpleados()
+        public IEnumerable<Employee> GetEmpleados()
         {
             return _context.Empleados;
         }
@@ -47,7 +47,7 @@ namespace Empleate.Controllers
 
         // PUT: api/Empleados/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutEmpleado([FromRoute] int id, [FromBody] Empleado empleado)
+        public async Task<IActionResult> PutEmpleado([FromRoute] int id, [FromBody] Employee empleado)
         {
             if (!ModelState.IsValid)
             {
@@ -81,7 +81,7 @@ namespace Empleate.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostEmpleado([FromBody] Empleado empleado)
+        public async Task<IActionResult> PostEmpleado([FromBody] Employee empleado)
         {
             if (!ModelState.IsValid)
             {

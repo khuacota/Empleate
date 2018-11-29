@@ -36,7 +36,7 @@ namespace Empleate.Controllers
 
         // POST: api/Academic
         [HttpPost]
-        public IActionResult Post([FromBody] Academico value)
+        public IActionResult Post([FromBody] Academic value)
         {
             if (!ModelState.IsValid)
             {

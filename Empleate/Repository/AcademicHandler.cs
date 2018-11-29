@@ -18,16 +18,16 @@ namespace Empleate.Repository
             this.DBContext = context;
         }
         
-        public void CreateEmpleado(Empleado item)
+        public void CreateEmpleado(Employee item)
         {
             this.DBContext.Empleados.Add(item);
 
             this.DBContext.SaveChanges();
         }
 
-        public void Create(Academico item)
+        public void Create(Academic item)
         {
-            var result =  this.DBContext.Idiomas.Where(idioma => idioma.EmpleadoId == item.EmpleadoId).ToList();
+            var result =  this.DBContext.Idiomas.Where(idioma => idioma.EmpleadoId == item.EmployeeId).ToList();
             if (result.ToArray().Length > 0)
             {
                 throw new Exception("esta cuenta ya tiene informacion academica");
@@ -39,7 +39,7 @@ namespace Empleate.Repository
                 
             foreach (var idioma in item.Idiomas)
             {
-                if (idioma.EmpleadoId != item.EmpleadoId)
+                if (idioma.EmpleadoId != item.EmployeeId)
                 {
                     throw new Exception("idioma invalido");
                 }
@@ -47,7 +47,7 @@ namespace Empleate.Repository
             }
             foreach (var titulo in item.Titulos)
             {
-                if (titulo.EmpleadoId != item.EmpleadoId)
+                if (titulo.EmpleadoId != item.EmployeeId)
                 {
 
                     throw new Exception("titulo invalido");
@@ -55,7 +55,7 @@ namespace Empleate.Repository
             }
             foreach (var exp in item.Experiencias)
             {
-                if (!ValidExp(exp) && exp.EmpleadoId != item.EmpleadoId)
+                if (!ValidExp(exp) && exp.EmpleadoId != item.EmployeeId)
                 {
                     throw new Exception("experiencia invalida");
                 }
@@ -76,17 +76,17 @@ namespace Empleate.Repository
             this.DBContext.SaveChanges();
         }
 
-        public Boolean ValidTitulo(Titulo titulo)
+        public Boolean ValidTitulo(Title titulo)
         {
             Boolean res = true;
             Regex regex = new Regex(@"^[a-zA-Z][a-zA-Z0-9]*$");
             res &= regex.IsMatch(titulo.Descripcion);
             regex = new Regex(@"^[a-zA-Z][a-zA-Z]*$");
-            res &= regex.IsMatch(titulo.Grado);
+            res &= regex.IsMatch(titulo.Grade);
             return res;
         }
 
-        public Boolean ValidExp(Experiencia exp)
+        public Boolean ValidExp(Experience exp)
         {
             Boolean res = true;
             res &= DateTime.Compare(exp.Inicio,exp.Fin) < 0;
@@ -94,7 +94,7 @@ namespace Empleate.Repository
             return res;
         }
 
-        public Boolean ValidIdioma(Language idioma)
+        public Boolean ValidIdioma(LanguageEmployee idioma)
         {
             Boolean res = true;
             Regex regex = new Regex(@"^[a-zA-Z][a-zA-Z]*$");

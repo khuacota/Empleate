@@ -22,7 +22,7 @@ namespace Empleate.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] OfertaTrabajoModel value)
+        public IActionResult Post([FromBody] JobOfferModel value)
         {
             if (!ModelState.IsValid)
             {

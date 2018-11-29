@@ -1,14 +1,11 @@
 ﻿using Empleate.Validators;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Empleate.Models
 {
-    public class Experiencia
+    public class Experience
     {
         [Key]
         [Column(Order = 1)]
@@ -30,7 +27,7 @@ namespace Empleate.Models
         public DateTime Fin { get; set; }
 
         public int EmpleadoId { get; set; }
-        [ForeignKey("EmpleadoId")]
-        public Empleado Empleado { get; set; }
+        [ForeignKey("EmployeeId")]
+        public Employee Empleado { get; set; }
     }
 }

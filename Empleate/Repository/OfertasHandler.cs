@@ -18,11 +18,11 @@ namespace Empleate.Repository
             this.DBContext = context;
         }
 
-        public void Create(OfertaTrabajoModel item)
+        public void Create(JobOfferModel item)
         {
 
-            var oferta = new OfertaTrabajo() { 
-                EmpresaId = item.EmpresaId,
+            var oferta = new JobOffer() { 
+                CompanyId = item.EmpresaId,
                 Descripcion = item.Descripcion,
                 Ciudad = item.Ciudad,
                 ExperienciaMin = item.ExperienciaMin,
@@ -45,7 +45,7 @@ namespace Empleate.Repository
             this.DBContext.SaveChanges();
         }
 
-        public Boolean ValidIdioma(LanguageRequerido idioma)
+        public Boolean ValidIdioma(LanguageJob idioma)
         {
             Boolean res = true;
             Regex regex = new Regex(@"^[a-zA-Z][a-zA-Z]*$");
@@ -53,7 +53,7 @@ namespace Empleate.Repository
             return res;
         }
 
-        public Boolean ValidOferta(OfertaTrabajo oferta)
+        public Boolean ValidOferta(JobOffer oferta)
         {
             Boolean res = true;
             res &= oferta.ExperienciaMin >= 0 && oferta.ExperienciaMin <= 20;

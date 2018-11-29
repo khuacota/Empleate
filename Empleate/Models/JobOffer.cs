@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using Empleate.Validators;
+using System;
 using System.ComponentModel.DataAnnotations;
-using Empleate.Validators;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Empleate.Models
 {
-    public class OfertaTrabajo
+    public class JobOffer
     {
         [Key]
         [Column(Order = 1)]
@@ -17,36 +14,36 @@ namespace Empleate.Models
 
 
         [Required(ErrorMessage = "Id de empresa es requerido")]
-        public int EmpresaId { get; set; }
+        public int CompanyId { get; set; }
 
 
         [Required(ErrorMessage = "profesion es requerido")]
         [RegularExpression(RegularExpression.TextValidation, ErrorMessage = "profesion debe ser texto")]
-        public string Profesion { get; set; }
+        public string Profession { get; set; }
 
 
         [Required(ErrorMessage = "descripcion es requerido")]
         [RegularExpression(RegularExpression.NumTextValidation, ErrorMessage = "descripcion debe ser texto")]
-        public string Descripcion { get; set; }
+        public string Description { get; set; }
 
 
         [Required(ErrorMessage = "experiencia minima es requerido")]
-        public int ExperienciaMin { get; set; }
+        public int MinExperience { get; set; }
 
 
         [Required(ErrorMessage = "ciudad es requerido")]
         [RegularExpression(RegularExpression.TextValidation, ErrorMessage = "ciudad debe ser texto")]
-        public string Ciudad { get; set; }
+        public string City { get; set; }
 
         [Required(ErrorMessage = "hora de inicio es requerido")]
-        public DateTime HoraInicio { get; set; }
+        public DateTime StartTime { get; set; }
 
 
         [Required(ErrorMessage = "hora de salida es requerido")]
-        public DateTime HoraFin { get; set; }
+        public DateTime EndTime { get; set; }
 
 
         [Required(ErrorMessage = "fecha limite de postulacion es requerido")]
-        public DateTime  FechaLimite { get; set; }
+        public DateTime Deadline { get; set; }
     }
 }
