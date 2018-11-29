@@ -36,11 +36,16 @@ namespace Empleate.Repository
         {
             var result =  this.DBContext.Idiomas.Where(idioma => idioma.EmployeeId == item.EmployeeId).ToList();
             
-            if (item.Languages.Count < 1 || item.Degrees.Count < 1)
+            if (item.Languages.Count < 1)
             {
                 throw new Exception("necesitas minimo 1 titulo e idioma");
             }
-                
+
+            if(item.Occupations.Count < 1 && item.Degrees.Count < 1)
+            {
+                throw new Exception("necesitas minimo 1 titulo u ocupacion");
+            }
+
             foreach (var idioma in item.Languages)
             {
                 if (idioma.EmployeeId != item.EmployeeId)
@@ -48,6 +53,14 @@ namespace Empleate.Repository
                     throw new Exception("idioma invalido");
                 }
                     
+            }
+            foreach (var occupation in item.Occupations)
+            {
+                if (occupation.EmployeeId != item.EmployeeId)
+                {
+                    throw new Exception("idioma invalido");
+                }
+
             }
             foreach (var titulo in item.Degrees)
             {

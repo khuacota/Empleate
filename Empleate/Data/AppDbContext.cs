@@ -32,6 +32,6 @@ namespace Empleate.Data
 
         public DbSet<Company> Empresas { get; set; }
 
-        public DbSet<OcupacionEmpleado> OcupacionesEmpleados { get; set; }
+        public DbSet<OccupationEmp> OcupacionesEmpleados { get; set; }
     }
 }
