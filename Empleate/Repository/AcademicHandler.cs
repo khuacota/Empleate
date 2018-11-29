@@ -27,50 +27,50 @@ namespace Empleate.Repository
 
         public void Create(Academic item)
         {
-            var result =  this.DBContext.Idiomas.Where(idioma => idioma.EmpleadoId == item.EmployeeId).ToList();
+            var result =  this.DBContext.Idiomas.Where(idioma => idioma.EmployeeId == item.EmployeeId).ToList();
             if (result.ToArray().Length > 0)
             {
                 throw new Exception("esta cuenta ya tiene informacion academica");
             }
-            if (item.Idiomas.Count < 1 || item.Titulos.Count < 1)
+            if (item.Languages.Count < 1 || item.Degrees.Count < 1)
             {
                 throw new Exception("necesitas minimo 1 titulo e idioma");
             }
                 
-            foreach (var idioma in item.Idiomas)
+            foreach (var idioma in item.Languages)
             {
-                if (idioma.EmpleadoId != item.EmployeeId)
+                if (idioma.EmployeeId != item.EmployeeId)
                 {
                     throw new Exception("idioma invalido");
                 }
                     
             }
-            foreach (var titulo in item.Titulos)
+            foreach (var titulo in item.Degrees)
             {
-                if (titulo.EmpleadoId != item.EmployeeId)
+                if (titulo.EmployeeId != item.EmployeeId)
                 {
 
                     throw new Exception("titulo invalido");
                 }
             }
-            foreach (var exp in item.Experiencias)
+            foreach (var exp in item.Experiences)
             {
-                if (!ValidExp(exp) && exp.EmpleadoId != item.EmployeeId)
+                if (!ValidExp(exp) && exp.EmployeeId != item.EmployeeId)
                 {
                     throw new Exception("experiencia invalida");
                 }
                     
             }
-            this.DBContext.Titulos.AddRange(item.Titulos);
-            this.DBContext.Idiomas.AddRange(item.Idiomas);
-            if (item.Experiencias != null)
+            this.DBContext.Titulos.AddRange(item.Degrees);
+            this.DBContext.Idiomas.AddRange(item.Languages);
+            if (item.Experiences != null)
             {
-                this.DBContext.Experiencias.AddRange(item.Experiencias);
+                this.DBContext.Experiencias.AddRange(item.Experiences);
 
             }
-            if (item.Habilidades != null)
+            if (item.Skills != null)
             {
-                this.DBContext.HabilidadEmp.AddRange(item.Habilidades);
+                this.DBContext.HabilidadEmp.AddRange(item.Skills);
 
             }
             this.DBContext.SaveChanges();
@@ -80,7 +80,7 @@ namespace Empleate.Repository
         {
             Boolean res = true;
             Regex regex = new Regex(@"^[a-zA-Z][a-zA-Z0-9]*$");
-            res &= regex.IsMatch(titulo.Descripcion);
+            res &= regex.IsMatch(titulo.Description);
             regex = new Regex(@"^[a-zA-Z][a-zA-Z]*$");
             res &= regex.IsMatch(titulo.Grade);
             return res;
@@ -98,7 +98,7 @@ namespace Empleate.Repository
         {
             Boolean res = true;
             Regex regex = new Regex(@"^[a-zA-Z][a-zA-Z]*$");
-            res &= regex.IsMatch(idioma.Idioma);
+            res &= regex.IsMatch(idioma.Language);
             return res;
         }
     }

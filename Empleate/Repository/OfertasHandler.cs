@@ -22,24 +22,24 @@ namespace Empleate.Repository
         {
 
             var oferta = new JobOffer() { 
-                CompanyId = item.EmpresaId,
-                Descripcion = item.Descripcion,
-                Ciudad = item.Ciudad,
-                ExperienciaMin = item.ExperienciaMin,
-                FechaLimite = item.FechaLimite,
-                HoraFin = item.HoraFin,
-                HoraInicio = item.HoraInicio,
-                Profesion = item.Profesion
+                CompanyId = item.CompanyId,
+                Description = item.Description,
+                City = item.City,
+                MinExperience = item.MinExperience,
+                Deadline = item.Deadline,
+                EndTime = item.EndTime,
+                StartTime = item.StartTime,
+                Profession = item.Profession
             };
             if (!ValidOferta(oferta))
             {
                 throw new Exception("invalid data");
             }
             this.DBContext.Ofertas.Add(oferta);
-            this.DBContext.IdiomasRequeridos.AddRange(item.IdiomasReq);
-            if (item.HabilidadesReq != null)
+            this.DBContext.IdiomasRequeridos.AddRange(item.ReqLanguages);
+            if (item.ReqSkills != null)
             {
-                this.DBContext.HabilidadesRequeridas.AddRange(item.HabilidadesReq);
+                this.DBContext.HabilidadesRequeridas.AddRange(item.ReqSkills);
 
             }
             this.DBContext.SaveChanges();
@@ -49,15 +49,15 @@ namespace Empleate.Repository
         {
             Boolean res = true;
             Regex regex = new Regex(@"^[a-zA-Z][a-zA-Z]*$");
-            res &= regex.IsMatch(idioma.Idioma);
+            res &= regex.IsMatch(idioma.Language);
             return res;
         }
 
         public Boolean ValidOferta(JobOffer oferta)
         {
             Boolean res = true;
-            res &= oferta.ExperienciaMin >= 0 && oferta.ExperienciaMin <= 20;
-            res &= DateTime.Compare(oferta.FechaLimite, DateTime.Today) > 0;
+            res &= oferta.MinExperience >= 0 && oferta.MinExperience <= 20;
+            res &= DateTime.Compare(oferta.Deadline, DateTime.Today) > 0;
             return res;
         }
     }
