@@ -1,5 +1,6 @@
 ﻿using Empleate.Validators;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -48,5 +49,7 @@ namespace Empleate.Models
         [Required(ErrorMessage = "Imagen es requerido")]
         [RegularExpression(RegularExpression.ImageValidation, ErrorMessage = "Formato de imagen invalido")]
         public string Image { get; set; }
+
+        public ICollection<OccupationEmp> Occupations{ get; set; }
     }
 }

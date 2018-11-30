@@ -19,6 +19,12 @@ namespace Empleate.Controllers
             _context = context;
         }
 
+        [HttpGet("search")]
+        public IActionResult GetEmployeeByOcupation([FromQuery] string[] ocupation)
+        {
+            return Ok(ocupation);
+        }
+
         // GET: api/Empleados
         [HttpGet]
         public IEnumerable<Employee> GetEmpleados()
