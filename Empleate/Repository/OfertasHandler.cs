@@ -18,13 +18,33 @@ namespace Empleate.Repository
             this.DBContext = context;
         }
 
-        public void postulate(Postulation value)
+        public void Postulate(Postulation value)
         {
             this.DBContext.Postulations.Add(value);
             this.DBContext.SaveChanges();
 
         }
-        
+
+        public JobOfferModel GetOne(int id)
+        {
+            var offers = this.DBContext.Ofertas.Where(offer => offer.CompanyId == id).ToList();
+            var job = new JobOfferModel()
+            {
+                City = offers[0].City,
+                CompanyId = offers[0].CompanyId,
+                Deadline = offers[0].Deadline,
+                Description = offers[0].Description,
+                EndTime = offers[0].EndTime,
+                MinExperience = offers[0].MinExperience,
+                Profession = offers[0].Profession,
+                StartTime = offers[0].StartTime
+            };
+            job.ReqLanguages = this.DBContext.IdiomasRequeridos.Where(offer => offer.OfferId == offers[0].Id).ToList();
+            job.ReqSkills = this.DBContext.HabilidadesRequeridas.Where(offer => offer.OfferId == offers[0].Id).ToList();
+            return job;
+
+        }
+
         public ICollection<JobOfferModel> filterByCompany(string[] searchWords)
         {
             var companies = this.DBContext.Empresas.ToList();
@@ -57,8 +77,8 @@ namespace Empleate.Repository
                     Profession = jobOffer.Profession,
                     StartTime = jobOffer.StartTime
                 };
-                job.ReqLanguages = this.DBContext.IdiomasRequeridos.Where(offer => offer.OfferId == jobOffer.CompanyId).ToList();
-                job.ReqSkills = this.DBContext.HabilidadesRequeridas.Where(offer => offer.OfferId == jobOffer.CompanyId).ToList();
+                job.ReqLanguages = this.DBContext.IdiomasRequeridos.Where(offer => offer.OfferId == jobOffer.Id).ToList();
+                job.ReqSkills = this.DBContext.HabilidadesRequeridas.Where(offer => offer.OfferId == jobOffer.Id).ToList();
                 results.Add(job);
             }
             return results;
