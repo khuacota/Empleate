@@ -14,6 +14,8 @@ namespace Empleate.Data
             base.OnModelCreating(builder);
         }
 
+        public DbSet<Postulation> Postulations { get; set; }
+
         public DbSet<Employee> Empleados { get; set; }
 
         public DbSet<JobOffer> Ofertas { get; set; }

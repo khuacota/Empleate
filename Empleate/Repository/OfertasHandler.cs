@@ -18,6 +18,13 @@ namespace Empleate.Repository
             this.DBContext = context;
         }
 
+        public void postulate(Postulation value)
+        {
+            this.DBContext.Postulations.Add(value);
+            this.DBContext.SaveChanges();
+
+        }
+        
         public ICollection<JobOfferModel> filterByCompany(string[] searchWords)
         {
             var companies = this.DBContext.Empresas.ToList();

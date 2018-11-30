@@ -47,5 +47,24 @@ namespace Empleate.Controllers
 
             return Ok();
         }
+
+        [HttpPost("postulate")]
+        public IActionResult Postulate([FromBody] Postulation value)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                this.handler.postulate(value);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+
+            return Ok();
+        }
     }
 }
