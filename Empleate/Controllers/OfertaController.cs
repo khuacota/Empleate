@@ -25,8 +25,23 @@ namespace Empleate.Controllers
         public IActionResult GetJobsByCompany([FromQuery] string[] searchWord)
         {
 
+            var results = this.handler.filterByCompany(searchWord);
+            return Ok(results);
+        }
 
-            return Ok(searchWord);
+        [HttpGet("{id}")]
+        public IActionResult GetJob([FromRoute] int id)
+        {
+
+            try
+            {
+                var results = this.handler.GetOne(id);
+                return Ok(results);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         [HttpPost]
@@ -39,6 +54,25 @@ namespace Empleate.Controllers
             try
             {
                 this.handler.Create(value);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+
+            return Ok();
+        }
+
+        [HttpPost("postulate")]
+        public IActionResult Postulate([FromBody] Postulation value)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                this.handler.Postulate(value);
             }
             catch (Exception e)
             {
