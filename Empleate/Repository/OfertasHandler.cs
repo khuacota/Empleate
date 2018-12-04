@@ -25,13 +25,12 @@ namespace Empleate.Repository
 
         }
 
-        public JobOfferModel GetOne(int id)
+        public JobOfferModelGet GetOne(int id)
         {
             var offers = this.DBContext.Ofertas.Where(offer => offer.CompanyId == id).ToList();
-            var job = new JobOfferModel()
+            var job = new JobOfferModelGet()
             {
                 City = offers[0].City,
-                CompanyId = offers[0].CompanyId,
                 Deadline = offers[0].Deadline,
                 Description = offers[0].Description,
                 EndTime = offers[0].EndTime,
@@ -39,13 +38,14 @@ namespace Empleate.Repository
                 Profession = offers[0].Profession,
                 StartTime = offers[0].StartTime
             };
+            job.CompanyName = this.DBContext.Empresas.Where(com => com.Id == offers[0].CompanyId).ToList()[0].Name;
             job.ReqLanguages = this.DBContext.IdiomasRequeridos.Where(offer => offer.OfferId == offers[0].Id).ToList();
             job.ReqSkills = this.DBContext.HabilidadesRequeridas.Where(offer => offer.OfferId == offers[0].Id).ToList();
             return job;
 
         }
 
-        public ICollection<JobOfferModel> filterByCompany(string[] searchWords)
+        public ICollection<JobOfferModelGet> filterByCompany(string[] searchWords)
         {
             var companies = this.DBContext.Empresas.ToList();
             var companiesres = new List<Company>();
@@ -64,12 +64,11 @@ namespace Empleate.Repository
             {
                 jobOffers.AddRange(this.DBContext.Ofertas.Where(offer => offer.CompanyId == company.Id).ToList());
             }
-            var results = new List<JobOfferModel>();
+            var results = new List<JobOfferModelGet>();
             foreach (var jobOffer in jobOffers)
             {
-                var job = new JobOfferModel() {
+                var job = new JobOfferModelGet() {
                     City = jobOffer.City,
-                    CompanyId = jobOffer.CompanyId,
                     Deadline = jobOffer.Deadline,
                     Description = jobOffer.Description,
                     EndTime = jobOffer.EndTime,
@@ -77,6 +76,7 @@ namespace Empleate.Repository
                     Profession = jobOffer.Profession,
                     StartTime = jobOffer.StartTime
                 };
+                job.CompanyName = this.DBContext.Empresas.Where(com => com.Id == jobOffer.CompanyId).ToList()[0].Name;
                 job.ReqLanguages = this.DBContext.IdiomasRequeridos.Where(offer => offer.OfferId == jobOffer.Id).ToList();
                 job.ReqSkills = this.DBContext.HabilidadesRequeridas.Where(offer => offer.OfferId == jobOffer.Id).ToList();
                 results.Add(job);
