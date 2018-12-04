@@ -6,7 +6,7 @@ using System;
 
 namespace Empleate.Controllers
 {
-    [Route("[controller]")]
+    [Route("Oferta")]
     [ApiController]
     public class OffersController : Controller
     {
