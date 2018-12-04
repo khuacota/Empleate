@@ -25,10 +25,12 @@ namespace Empleate.Repository
             var skills = this.DBContext.HabilidadEmp.Where(idioma => idioma.EmployeeId == id).ToList();
             var degrees = this.DBContext.Titulos.Where(idioma => idioma.EmployeeId == id).ToList();
             var experiences = this.DBContext.Experiencias.Where(idioma => idioma.EmployeeId == id).ToList();
+            var occupations = this.DBContext.OcupacionesEmpleados.Where(oc => oc.EmployeeId == id).ToList();
             academic.Degrees = degrees;
             academic.Skills = skills;
             academic.Languages = languages;
             academic.Experiences = experiences;
+            academic.Occupations = occupations;
             return academic;
         }
 
@@ -58,18 +60,27 @@ namespace Empleate.Repository
             {
                 if (occupation.EmployeeId != item.EmployeeId)
                 {
+                    throw new Exception("ocupacion invalido");
+                }
+
+            }
+            foreach (var occupation in item.Occupations)
+            {
+                if (occupation.EmployeeId != item.EmployeeId)
+                {
                     throw new Exception("idioma invalido");
                 }
 
             }
-            foreach (var titulo in item.Degrees)
-            {
-                if (titulo.EmployeeId != item.EmployeeId)
+                foreach (var titulo in item.Degrees)
                 {
+                    if (titulo.EmployeeId != item.EmployeeId)
+                    {
 
-                    throw new Exception("titulo invalido");
+                        throw new Exception("titulo invalido");
+                    }
                 }
-            }
+            
             foreach (var exp in item.Experiences)
             {
                 if (!ValidExp(exp) && exp.EmployeeId != item.EmployeeId)
@@ -78,17 +89,25 @@ namespace Empleate.Repository
                 }
                     
             }
-            this.DBContext.Titulos.AddRange(item.Degrees);
             this.DBContext.Idiomas.AddRange(item.Languages);
-            if (item.Experiences != null)
+            if (item.Experiences.LongCount() != 0)
             {
                 this.DBContext.Experiencias.AddRange(item.Experiences);
 
             }
-            if (item.Skills != null)
+            if (item.Degrees.LongCount() != 0)
+            {
+                this.DBContext.Titulos.AddRange(item.Degrees);
+
+            }
+            if (item.Occupations.LongCount() != 0)
+            {
+                this.DBContext.OcupacionesEmpleados.AddRange(item.Occupations);
+
+            }
+            if (item.Skills.LongCount() != 0)
             {
                 this.DBContext.HabilidadEmp.AddRange(item.Skills);
-
             }
             this.DBContext.SaveChanges();
         }

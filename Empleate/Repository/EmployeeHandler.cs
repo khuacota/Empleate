@@ -29,8 +29,12 @@ namespace Empleate.Repository
             {
                 employees.AddRange(this.DBContext.Empleados.Where(emp => emp.Id == ocupation.EmployeeId));
             }
+            foreach(var emp in employees)
+            {
+                emp.Occupations.AddRange(ocupations.Where(oc => oc.EmployeeId == emp.Id));
 
-            return null;
+            }
+            return employees;
             //return DBContext.Profesiones.Where(c => c.Descripcion.Contains(description)).Include(e => e.Empleados).FirstOrDefault();
         }
     }

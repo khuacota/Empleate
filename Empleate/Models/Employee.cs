@@ -1,4 +1,5 @@
 ﻿using Empleate.Validators;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -50,6 +51,7 @@ namespace Empleate.Models
         [RegularExpression(RegularExpression.ImageValidation, ErrorMessage = "Formato de imagen invalido")]
         public string Image { get; set; }
 
-        public ICollection<OccupationEmp> Occupations{ get; set; }
+        [JsonIgnore]
+        public List<OccupationEmp> Occupations{ get; set; }
     }
 }

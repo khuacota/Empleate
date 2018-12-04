@@ -19,7 +19,7 @@ namespace Empleate.Models
 
         [Required(ErrorMessage = "Id de empleado es requerido")]
         public int EmployeeId { get; set; }
-        [ForeignKey("EmpleadoId")]
-        public Employee employee { get; set; }
+        [ForeignKey("EmployeeId")]
+        public Employee Employee { get; set; }
     }
 }

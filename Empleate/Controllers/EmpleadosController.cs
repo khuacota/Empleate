@@ -1,7 +1,9 @@
 ﻿using Empleate.Data;
 using Empleate.Models;
+using Empleate.Repository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,16 +15,26 @@ namespace Empleate.Controllers
     public class EmpleadosController : ControllerBase
     {
         private readonly AppDbContext _context;
+        private EmployeeHandler handler;
 
         public EmpleadosController(AppDbContext context)
         {
             _context = context;
+            this.handler = new EmployeeHandler(context);
         }
 
         [HttpGet("search")]
         public IActionResult GetEmployeeByOcupation([FromQuery] string[] ocupation)
         {
-            return Ok(ocupation);
+            try
+            {
+                var results = this.handler.filterByOccupation(ocupation);
+                return Ok(results);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         // GET: api/Empleados
