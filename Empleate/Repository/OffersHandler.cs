@@ -10,10 +10,10 @@ namespace Empleate.Repository
 {
     
 
-    public class OfertasHandler
+    public class OffersHandler
     {
         protected AppDbContext DBContext { get; set; }
-        public OfertasHandler(AppDbContext context)
+        public OffersHandler(AppDbContext context)
         {
             this.DBContext = context;
         }
@@ -27,7 +27,7 @@ namespace Empleate.Repository
 
         public JobOfferModelGet GetOne(int id)
         {
-            var offers = this.DBContext.Ofertas.Where(offer => offer.CompanyId == id).ToList();
+            var offers = this.DBContext.Offers.Where(offer => offer.CompanyId == id).ToList();
             var job = new JobOfferModelGet()
             {
                 City = offers[0].City,
@@ -38,16 +38,16 @@ namespace Empleate.Repository
                 Profession = offers[0].Profession,
                 StartTime = offers[0].StartTime
             };
-            job.CompanyName = this.DBContext.Empresas.Where(com => com.Id == offers[0].CompanyId).ToList()[0].Name;
-            job.ReqLanguages = this.DBContext.IdiomasRequeridos.Where(offer => offer.OfferId == offers[0].Id).ToList();
-            job.ReqSkills = this.DBContext.HabilidadesRequeridas.Where(offer => offer.OfferId == offers[0].Id).ToList();
+            job.CompanyName = this.DBContext.Companies.Where(com => com.Id == offers[0].CompanyId).ToList()[0].Name;
+            job.ReqLanguages = this.DBContext.RequiredLanguages.Where(offer => offer.OfferId == offers[0].Id).ToList();
+            job.ReqSkills = this.DBContext.RequiredSkills.Where(offer => offer.OfferId == offers[0].Id).ToList();
             return job;
 
         }
 
         public ICollection<JobOfferModelGet> filterByCompany(string[] searchWords)
         {
-            var companies = this.DBContext.Empresas.ToList();
+            var companies = this.DBContext.Companies.ToList();
             var companiesres = new List<Company>();
             var jobOffers = new List<JobOffer>();
             foreach (var company in companies)
@@ -62,7 +62,7 @@ namespace Empleate.Repository
             }
             foreach(var company in companiesres)
             {
-                jobOffers.AddRange(this.DBContext.Ofertas.Where(offer => offer.CompanyId == company.Id).ToList());
+                jobOffers.AddRange(this.DBContext.Offers.Where(offer => offer.CompanyId == company.Id).ToList());
             }
             var results = new List<JobOfferModelGet>();
             foreach (var jobOffer in jobOffers)
@@ -76,9 +76,9 @@ namespace Empleate.Repository
                     Profession = jobOffer.Profession,
                     StartTime = jobOffer.StartTime
                 };
-                job.CompanyName = this.DBContext.Empresas.Where(com => com.Id == jobOffer.CompanyId).ToList()[0].Name;
-                job.ReqLanguages = this.DBContext.IdiomasRequeridos.Where(offer => offer.OfferId == jobOffer.Id).ToList();
-                job.ReqSkills = this.DBContext.HabilidadesRequeridas.Where(offer => offer.OfferId == jobOffer.Id).ToList();
+                job.CompanyName = this.DBContext.Companies.Where(com => com.Id == jobOffer.CompanyId).ToList()[0].Name;
+                job.ReqLanguages = this.DBContext.RequiredLanguages.Where(offer => offer.OfferId == jobOffer.Id).ToList();
+                job.ReqSkills = this.DBContext.RequiredSkills.Where(offer => offer.OfferId == jobOffer.Id).ToList();
                 results.Add(job);
             }
             return results;
@@ -102,11 +102,11 @@ namespace Empleate.Repository
             {
                 throw new Exception("invalid data");
             }
-            this.DBContext.Ofertas.Add(oferta);
-            this.DBContext.IdiomasRequeridos.AddRange(item.ReqLanguages);
+            this.DBContext.Offers.Add(oferta);
+            this.DBContext.RequiredLanguages.AddRange(item.ReqLanguages);
             if (item.ReqSkills != null)
             {
-                this.DBContext.HabilidadesRequeridas.AddRange(item.ReqSkills);
+                this.DBContext.RequiredSkills.AddRange(item.ReqSkills);
 
             }
             this.DBContext.SaveChanges();
