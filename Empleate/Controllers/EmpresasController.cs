@@ -19,8 +19,10 @@ namespace Empleate.Controllers
             _context = context;
         }
 
+        
+
         [HttpGet]
-        public IEnumerable<Empresa> GetEmpresas()
+        public IEnumerable<Company> GetEmpresas()
         {
             return _context.Empresas;
         }
@@ -44,7 +46,7 @@ namespace Empleate.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutEmpresa([FromRoute] int id, [FromBody] Empresa empresa)
+        public async Task<IActionResult> PutEmpresa([FromRoute] int id, [FromBody] Company empresa)
         {
             if (!ModelState.IsValid)
             {
@@ -78,7 +80,7 @@ namespace Empleate.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostEmpresa([FromBody] Empresa empresa)
+        public async Task<IActionResult> PostEmpresa([FromBody] Company empresa)
         {
             if (!ModelState.IsValid)
             {

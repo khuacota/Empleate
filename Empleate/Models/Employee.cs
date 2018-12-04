@@ -1,11 +1,13 @@
 ﻿using Empleate.Validators;
+using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Empleate.Models
 {
-    public class Empleado
+    public class Employee
     {
         [Key]
         [Column(Order = 1)]
@@ -14,39 +16,42 @@ namespace Empleate.Models
 
         [Required(ErrorMessage = "Nombre es requerido")]
         [RegularExpression(RegularExpression.TextValidation, ErrorMessage = "Nombre debe ser texto")]
-        public string Nombre { get; set; }
+        public string Name { get; set; }
 
-        [Required(ErrorMessage = "Apellidos es requerido")]
-        [RegularExpression(RegularExpression.TextValidation, ErrorMessage = "Apellidos debe ser texto")]
-        public string Apellidos { get; set; }
+        [Required(ErrorMessage = "Apellido es requerido")]
+        [RegularExpression(RegularExpression.TextValidation, ErrorMessage = "Apellido debe ser texto")]
+        public string LastName { get; set; }
 
         [Required(ErrorMessage = "Fecha de nacimiento es requerido")]
         [AgeCheck]
         [DataType(DataType.Date)]
-        public DateTime FechaNacimiento { get; set; }
+        public DateTime Birthdate { get; set; }
 
         [Required(ErrorMessage = "Género es requerido")]
-        public string Genero { get; set; }
+        public string Gender { get; set; }
 
         [Required(ErrorMessage = "Estado civil es requerido")]
-        public string EstadoCivil { get; set; }
+        public string CivilStatus { get; set; }
 
         [Required(ErrorMessage = "Celular es requerido")]
         [RegularExpression(RegularExpression.CellphoneValidation, ErrorMessage = "Numero de celular debe empezar con 6 o 7")]
-        public int Celular { get; set; }
+        public int Phone { get; set; }
 
         [Required(ErrorMessage = "Ciudad es requerido")]
-        public string Ciudad { get; set; }
+        public string City { get; set; }
 
         [Required(ErrorMessage = "Dirección es requerido")]
-        public string Direccion { get; set; }
+        public string Direction { get; set; }
 
         [Required(ErrorMessage = "Correo es requerido")]
         [EmailAddress]
-        public string Correo { get; set; }
+        public string Email { get; set; }
 
         [Required(ErrorMessage = "Imagen es requerido")]
         [RegularExpression(RegularExpression.ImageValidation, ErrorMessage = "Formato de imagen invalido")]
-        public string Imagen { get; set; }
+        public string Image { get; set; }
+
+        [JsonIgnore]
+        public List<OccupationEmp> Occupations{ get; set; }
     }
 }

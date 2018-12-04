@@ -14,22 +14,26 @@ namespace Empleate.Data
             base.OnModelCreating(builder);
         }
 
-        public DbSet<Empleado> Empleados { get; set; }
+        public DbSet<Postulation> Postulations { get; set; }
 
-        public DbSet<OfertaTrabajo> Ofertas { get; set; }
+        public DbSet<Employee> Empleados { get; set; }
 
-        public DbSet<Experiencia> Experiencias { get; set; }
+        public DbSet<JobOffer> Ofertas { get; set; }
 
-        public DbSet<Language> Idiomas { get; set; }
+        public DbSet<Experience> Experiencias { get; set; }
 
-        public DbSet<LanguageRequerido> IdiomasRequeridos { get; set; }
+        public DbSet<LanguageEmployee> Idiomas { get; set; }
 
-        public DbSet<Titulo> Titulos { get; set; }
+        public DbSet<LanguageJob> IdiomasRequeridos { get; set; }
 
-        public DbSet<HabilidadEmpleado> HabilidadEmp { get; set; }
+        public DbSet<Title> Titulos { get; set; }
 
-        public DbSet<HabilidadRequerida> HabilidadesRequeridas { get; set; }
+        public DbSet<SkillEmployee> HabilidadEmp { get; set; }
 
-        public DbSet<Empresa> Empresas { get; set; }
+        public DbSet<SkillJob> HabilidadesRequeridas { get; set; }
+
+        public DbSet<Company> Empresas { get; set; }
+
+        public DbSet<OccupationEmp> OcupacionesEmpleados { get; set; }
     }
 }

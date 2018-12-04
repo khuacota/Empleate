@@ -1,14 +1,11 @@
 ﻿using Empleate.Validators;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Empleate.Models
 {
-    public class Experiencia
+    public class Experience
     {
         [Key]
         [Column(Order = 1)]
@@ -17,11 +14,11 @@ namespace Empleate.Models
 
         [Required(ErrorMessage = "Lugar es requerido")]
         [RegularExpression(RegularExpression.NumTextValidation, ErrorMessage = "Lugar debe ser texto")]
-        public string Lugar { get; set; }
+        public string Place { get; set; }
 
         [Required(ErrorMessage = "Cargo es requerido")]
         [RegularExpression(RegularExpression.TextValidation, ErrorMessage = "Cargo debe ser texto")]
-        public string Cargo { get; set; }
+        public string Position { get; set; }
 
         [Required(ErrorMessage = "Inicio es requerido")]
         public DateTime Inicio { get; set; }
@@ -29,8 +26,8 @@ namespace Empleate.Models
         [Required(ErrorMessage = "Fin es requerido")]
         public DateTime Fin { get; set; }
 
-        public int EmpleadoId { get; set; }
-        [ForeignKey("EmpleadoId")]
-        public Empleado Empleado { get; set; }
+        public int EmployeeId { get; set; }
+        [ForeignKey("EmployeeId")]
+        public Employee Empleado { get; set; }
     }
 }

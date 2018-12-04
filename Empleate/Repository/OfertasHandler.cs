@@ -18,46 +18,113 @@ namespace Empleate.Repository
             this.DBContext = context;
         }
 
-        public void Create(OfertaTrabajoModel item)
+        public void Postulate(Postulation value)
+        {
+            this.DBContext.Postulations.Add(value);
+            this.DBContext.SaveChanges();
+
+        }
+
+        public JobOfferModelGet GetOne(int id)
+        {
+            var offers = this.DBContext.Ofertas.Where(offer => offer.CompanyId == id).ToList();
+            var job = new JobOfferModelGet()
+            {
+                City = offers[0].City,
+                Deadline = offers[0].Deadline,
+                Description = offers[0].Description,
+                EndTime = offers[0].EndTime,
+                MinExperience = offers[0].MinExperience,
+                Profession = offers[0].Profession,
+                StartTime = offers[0].StartTime
+            };
+            job.CompanyName = this.DBContext.Empresas.Where(com => com.Id == offers[0].CompanyId).ToList()[0].Name;
+            job.ReqLanguages = this.DBContext.IdiomasRequeridos.Where(offer => offer.OfferId == offers[0].Id).ToList();
+            job.ReqSkills = this.DBContext.HabilidadesRequeridas.Where(offer => offer.OfferId == offers[0].Id).ToList();
+            return job;
+
+        }
+
+        public ICollection<JobOfferModelGet> filterByCompany(string[] searchWords)
+        {
+            var companies = this.DBContext.Empresas.ToList();
+            var companiesres = new List<Company>();
+            var jobOffers = new List<JobOffer>();
+            foreach (var company in companies)
+            {
+                foreach(var word in searchWords)
+                {
+                    if (company.Name.Contains(word))
+                    {
+                        companiesres.Add(company);   
+                    }
+                }
+            }
+            foreach(var company in companiesres)
+            {
+                jobOffers.AddRange(this.DBContext.Ofertas.Where(offer => offer.CompanyId == company.Id).ToList());
+            }
+            var results = new List<JobOfferModelGet>();
+            foreach (var jobOffer in jobOffers)
+            {
+                var job = new JobOfferModelGet() {
+                    City = jobOffer.City,
+                    Deadline = jobOffer.Deadline,
+                    Description = jobOffer.Description,
+                    EndTime = jobOffer.EndTime,
+                    MinExperience = jobOffer.MinExperience,
+                    Profession = jobOffer.Profession,
+                    StartTime = jobOffer.StartTime
+                };
+                job.CompanyName = this.DBContext.Empresas.Where(com => com.Id == jobOffer.CompanyId).ToList()[0].Name;
+                job.ReqLanguages = this.DBContext.IdiomasRequeridos.Where(offer => offer.OfferId == jobOffer.Id).ToList();
+                job.ReqSkills = this.DBContext.HabilidadesRequeridas.Where(offer => offer.OfferId == jobOffer.Id).ToList();
+                results.Add(job);
+            }
+            return results;
+        }
+
+
+        public void Create(JobOfferModel item)
         {
 
-            var oferta = new OfertaTrabajo() { 
-                EmpresaId = item.EmpresaId,
-                Descripcion = item.Descripcion,
-                Ciudad = item.Ciudad,
-                ExperienciaMin = item.ExperienciaMin,
-                FechaLimite = item.FechaLimite,
-                HoraFin = item.HoraFin,
-                HoraInicio = item.HoraInicio,
-                Profesion = item.Profesion
+            var oferta = new JobOffer() { 
+                CompanyId = item.CompanyId,
+                Description = item.Description,
+                City = item.City,
+                MinExperience = item.MinExperience,
+                Deadline = item.Deadline,
+                EndTime = item.EndTime,
+                StartTime = item.StartTime,
+                Profession = item.Profession
             };
             if (!ValidOferta(oferta))
             {
                 throw new Exception("invalid data");
             }
             this.DBContext.Ofertas.Add(oferta);
-            this.DBContext.IdiomasRequeridos.AddRange(item.IdiomasReq);
-            if (item.HabilidadesReq != null)
+            this.DBContext.IdiomasRequeridos.AddRange(item.ReqLanguages);
+            if (item.ReqSkills != null)
             {
-                this.DBContext.HabilidadesRequeridas.AddRange(item.HabilidadesReq);
+                this.DBContext.HabilidadesRequeridas.AddRange(item.ReqSkills);
 
             }
             this.DBContext.SaveChanges();
         }
 
-        public Boolean ValidIdioma(LanguageRequerido idioma)
+        public Boolean ValidIdioma(LanguageJob idioma)
         {
             Boolean res = true;
             Regex regex = new Regex(@"^[a-zA-Z][a-zA-Z]*$");
-            res &= regex.IsMatch(idioma.Idioma);
+            res &= regex.IsMatch(idioma.Language);
             return res;
         }
 
-        public Boolean ValidOferta(OfertaTrabajo oferta)
+        public Boolean ValidOferta(JobOffer oferta)
         {
             Boolean res = true;
-            res &= oferta.ExperienciaMin >= 0 && oferta.ExperienciaMin <= 20;
-            res &= DateTime.Compare(oferta.FechaLimite, DateTime.Today) > 0;
+            res &= oferta.MinExperience >= 0 && oferta.MinExperience <= 20;
+            res &= DateTime.Compare(oferta.Deadline, DateTime.Today) > 0;
             return res;
         }
     }

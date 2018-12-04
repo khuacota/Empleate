@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Empleate.Models
 {
-    public class Empresa
+    public class Company
     {
         [Key]
         [Column(Order = 1)]
@@ -12,28 +12,28 @@ namespace Empleate.Models
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Nombre es requerido")]
-        public string Nombre { get; set; }
+        public string Name { get; set; }
 
         [Required(ErrorMessage = "Descripción es requerido")]
-        public string Descripcion { get; set; }
+        public string Description { get; set; }
 
         [Required(ErrorMessage = "Rubro es requerido")]
-        public string Rubro { get; set; }
+        public string Entry { get; set; }
 
         [Required(ErrorMessage = "Dirección es requerido")]
-        public string Direccion { get; set; }
+        public string Address { get; set; }
 
         [Required(ErrorMessage = "Telefono es requerido")]
         [RegularExpression(RegularExpression.IntegerValidation, ErrorMessage = "Telefono invalido")]
-        public int Telefono { get; set; }
+        public int Phone { get; set; }
 
         [Required(ErrorMessage = "Correo es requerido")]
-        public string Correo { get; set; }
+        public string Email { get; set; }
 
         public string Url { get; set; }
 
         [RegularExpression(RegularExpression.ImageValidation, ErrorMessage = "Formato de imagen invalido")]
-        public string Imagen { get; set; }
+        public string Image { get; set; }
 
 
     }

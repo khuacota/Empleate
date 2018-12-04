@@ -18,87 +18,105 @@ namespace Empleate.Repository
             this.DBContext = context;
         }
         
-        public void CreateEmpleado(Empleado item)
+        public Academic GetOne(int id)
         {
-            this.DBContext.Empleados.Add(item);
-
-            this.DBContext.SaveChanges();
+            var academic = new Academic();
+            var languages = this.DBContext.Idiomas.Where(idioma => idioma.EmployeeId == id).ToList();
+            var skills = this.DBContext.HabilidadEmp.Where(idioma => idioma.EmployeeId == id).ToList();
+            var degrees = this.DBContext.Titulos.Where(idioma => idioma.EmployeeId == id).ToList();
+            var experiences = this.DBContext.Experiencias.Where(idioma => idioma.EmployeeId == id).ToList();
+            var occupations = this.DBContext.OcupacionesEmpleados.Where(oc => oc.EmployeeId == id).ToList();
+            academic.Degrees = degrees;
+            academic.Skills = skills;
+            academic.Languages = languages;
+            academic.Experiences = experiences;
+            academic.Occupations = occupations;
+            return academic;
         }
 
-        public void Create(Academico item)
+        public void Create(Academic item)
         {
-            var result =  this.DBContext.Idiomas.Where(idioma => idioma.EmpleadoId == item.EmpleadoId).ToList();
-            if (result.ToArray().Length > 0)
-            {
-                throw new Exception("esta cuenta ya tiene informacion academica");
-            }
-            if (item.Idiomas.Count < 1 || item.Titulos.Count < 1)
+            var result =  this.DBContext.Idiomas.Where(idioma => idioma.EmployeeId == item.EmployeeId).ToList();
+            
+            if (item.Languages.Count < 1)
             {
                 throw new Exception("necesitas minimo 1 titulo e idioma");
             }
-                
-            foreach (var idioma in item.Idiomas)
+
+            if(item.Occupations.Count < 1 && item.Degrees.Count < 1)
             {
-                if (idioma.EmpleadoId != item.EmpleadoId)
+                throw new Exception("necesitas minimo 1 titulo u ocupacion");
+            }
+
+            foreach (var idioma in item.Languages)
+            {
+                if (idioma.EmployeeId != item.EmployeeId)
                 {
                     throw new Exception("idioma invalido");
                 }
                     
             }
-            foreach (var titulo in item.Titulos)
+            foreach (var occupation in item.Occupations)
             {
-                if (titulo.EmpleadoId != item.EmpleadoId)
+                if (occupation.EmployeeId != item.EmployeeId)
                 {
-
-                    throw new Exception("titulo invalido");
+                    throw new Exception("ocupacion invalido");
                 }
+
             }
-            foreach (var exp in item.Experiencias)
+            foreach (var occupation in item.Occupations)
             {
-                if (!ValidExp(exp) && exp.EmpleadoId != item.EmpleadoId)
+                if (occupation.EmployeeId != item.EmployeeId)
+                {
+                    throw new Exception("idioma invalido");
+                }
+
+            }
+                foreach (var titulo in item.Degrees)
+                {
+                    if (titulo.EmployeeId != item.EmployeeId)
+                    {
+
+                        throw new Exception("titulo invalido");
+                    }
+                }
+            
+            foreach (var exp in item.Experiences)
+            {
+                if (!ValidExp(exp) && exp.EmployeeId != item.EmployeeId)
                 {
                     throw new Exception("experiencia invalida");
                 }
                     
             }
-            this.DBContext.Titulos.AddRange(item.Titulos);
-            this.DBContext.Idiomas.AddRange(item.Idiomas);
-            if (item.Experiencias != null)
+            this.DBContext.Idiomas.AddRange(item.Languages);
+            if (item.Experiences.LongCount() != 0)
             {
-                this.DBContext.Experiencias.AddRange(item.Experiencias);
+                this.DBContext.Experiencias.AddRange(item.Experiences);
 
             }
-            if (item.Habilidades != null)
+            if (item.Degrees.LongCount() != 0)
             {
-                this.DBContext.HabilidadEmp.AddRange(item.Habilidades);
+                this.DBContext.Titulos.AddRange(item.Degrees);
 
+            }
+            if (item.Occupations.LongCount() != 0)
+            {
+                this.DBContext.OcupacionesEmpleados.AddRange(item.Occupations);
+
+            }
+            if (item.Skills.LongCount() != 0)
+            {
+                this.DBContext.HabilidadEmp.AddRange(item.Skills);
             }
             this.DBContext.SaveChanges();
         }
 
-        public Boolean ValidTitulo(Titulo titulo)
-        {
-            Boolean res = true;
-            Regex regex = new Regex(@"^[a-zA-Z][a-zA-Z0-9]*$");
-            res &= regex.IsMatch(titulo.Descripcion);
-            regex = new Regex(@"^[a-zA-Z][a-zA-Z]*$");
-            res &= regex.IsMatch(titulo.Grado);
-            return res;
-        }
-
-        public Boolean ValidExp(Experiencia exp)
+        public Boolean ValidExp(Experience exp)
         {
             Boolean res = true;
             res &= DateTime.Compare(exp.Inicio,exp.Fin) < 0;
             res &= DateTime.Compare(exp.Fin, DateTime.Today) <= 0;
-            return res;
-        }
-
-        public Boolean ValidIdioma(Language idioma)
-        {
-            Boolean res = true;
-            Regex regex = new Regex(@"^[a-zA-Z][a-zA-Z]*$");
-            res &= regex.IsMatch(idioma.Idioma);
             return res;
         }
     }
