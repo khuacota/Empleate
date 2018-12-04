@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using Empleate.Validators;
+using System;
 using System.ComponentModel.DataAnnotations;
-using Empleate.Validators;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Empleate.Models
 {
-    public class OfertaTrabajo
+    public class OfferJob
     {
         [Key]
         [Column(Order = 1)]
@@ -47,6 +44,6 @@ namespace Empleate.Models
 
 
         [Required(ErrorMessage = "fecha limite de postulacion es requerido")]
-        public DateTime  FechaLimite { get; set; }
+        public DateTime FechaLimite { get; set; }
     }
 }

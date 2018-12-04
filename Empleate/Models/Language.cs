@@ -22,6 +22,6 @@ namespace Empleate.Models
 
         public int EmpleadoId { get; set; }
         [ForeignKey("EmpleadoId")]
-        public Empleado Empleado { get; set; }
+        public Employee Empleado { get; set; }
     }
 }

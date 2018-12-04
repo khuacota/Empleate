@@ -8,55 +8,55 @@ using System.Threading.Tasks;
 
 namespace Empleate.Controllers
 {
-    [Route("empresas")]
+    [Route("empleados")]
     [ApiController]
-    public class EmpresasController : ControllerBase
+    public class EmployeesController : ControllerBase
     {
         private readonly AppDbContext _context;
 
-        public EmpresasController(AppDbContext context)
+        public EmployeesController(AppDbContext context)
         {
             _context = context;
         }
 
         [HttpGet]
-        public IEnumerable<Empresa> GetEmpresas()
+        public IEnumerable<Employee> GetEmpleados()
         {
-            return _context.Empresas;
+            return _context.Empleados;
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetEmpresa([FromRoute] int id)
+        public async Task<IActionResult> GetEmpleado([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var empresa = await _context.Empresas.FindAsync(id);
+            var empleado = await _context.Empleados.FindAsync(id);
 
-            if (empresa == null)
+            if (empleado == null)
             {
                 return NotFound();
             }
 
-            return Ok(empresa);
+            return Ok(empleado);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutEmpresa([FromRoute] int id, [FromBody] Empresa empresa)
+        public async Task<IActionResult> PutEmpleado([FromRoute] int id, [FromBody] Employee empleado)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != empresa.Id)
+            if (id != empleado.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(empresa).State = EntityState.Modified;
+            _context.Entry(empleado).State = EntityState.Modified;
 
             try
             {
@@ -64,7 +64,7 @@ namespace Empleate.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!EmpresaExists(id))
+                if (!EmpleadoExists(id))
                 {
                     return NotFound();
                 }
@@ -78,42 +78,41 @@ namespace Empleate.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostEmpresa([FromBody] Empresa empresa)
+        public async Task<IActionResult> PostEmpleado([FromBody] Employee empleado)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
-            _context.Empresas.Add(empresa);
+            _context.Empleados.Add(empleado);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetEmpresa", new { id = empresa.Id }, empresa);
+            return CreatedAtAction("GetEmpleado", new { id = empleado.Id }, empleado);
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteEmpresa([FromRoute] int id)
+        public async Task<IActionResult> DeleteEmpleado([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var empresa = await _context.Empresas.FindAsync(id);
-            if (empresa == null)
+            var empleado = await _context.Empleados.FindAsync(id);
+            if (empleado == null)
             {
                 return NotFound();
             }
 
-            _context.Empresas.Remove(empresa);
+            _context.Empleados.Remove(empleado);
             await _context.SaveChangesAsync();
 
-            return Ok(empresa);
+            return Ok(empleado);
         }
 
-        private bool EmpresaExists(int id)
+        private bool EmpleadoExists(int id)
         {
-            return _context.Empresas.Any(e => e.Id == id);
+            return _context.Empleados.Any(e => e.Id == id);
         }
     }
 }

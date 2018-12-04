@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Empleate.Models
 {
-    public class Empleado
+    public class Employee
     {
         [Key]
         [Column(Order = 1)]

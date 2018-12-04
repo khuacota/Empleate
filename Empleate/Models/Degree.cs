@@ -1,14 +1,10 @@
 ﻿using Empleate.Validators;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Empleate.Models
 {
-    public class Titulo
+    public class Degree
     {
         [Key]
         [Column(Order = 1)]
@@ -25,6 +21,6 @@ namespace Empleate.Models
 
         public int EmpleadoId { get; set; }
         [ForeignKey("EmpleadoId")]
-        public Empleado Empleado { get; set; }
+        public Employee Empleado { get; set; }
     }
 }

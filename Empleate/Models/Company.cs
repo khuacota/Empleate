@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Empleate.Models
 {
-    public class Empresa
+    public class Company
     {
         [Key]
         [Column(Order = 1)]

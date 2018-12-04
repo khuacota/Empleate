@@ -11,7 +11,7 @@ namespace Empleate.Validators
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            var model = validationContext.ObjectInstance as Empleado;
+            var model = validationContext.ObjectInstance as Employee;
 
             if (model == null)
             {

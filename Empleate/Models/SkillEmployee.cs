@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-using System.ComponentModel.DataAnnotations.Schema;
+﻿
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Empleate.Models
 {
-    public class HabilidadEmpleado
+    public class SkillEmployee
     {
 
         [Key]
@@ -21,6 +17,6 @@ namespace Empleate.Models
 
         public int EmpleadoId { get; set; }
         [ForeignKey("EmpleadoId")]
-        public Empleado Empleado { get; set; }
+        public Employee Empleado { get; set; }
     }
 }

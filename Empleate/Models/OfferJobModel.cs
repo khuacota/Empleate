@@ -2,12 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Empleate.Models
 {
-    public class OfertaTrabajoModel
+    public class OfferJobModel
     {
 
         [Required(ErrorMessage = "Nombre es requerido")]
@@ -29,11 +27,11 @@ namespace Empleate.Models
 
 
         [Required(ErrorMessage = "almenos 1 idioma es requerido")]
-        public ICollection<LanguageRequerido> IdiomasReq { get; set; }
+        public ICollection<LanguageRequired> IdiomasReq { get; set; }
 
 
         [Required(ErrorMessage = "almenos 1 habilidad es requerido")]
-        public ICollection<HabilidadRequerida> HabilidadesReq { get; set; }
+        public ICollection<SkillRequired> HabilidadesReq { get; set; }
 
         [Required(ErrorMessage = "Ciudad es requerido")]
         [RegularExpression(RegularExpression.TextValidation, ErrorMessage = "Ciudad debe ser texto")]
@@ -46,6 +44,6 @@ namespace Empleate.Models
         public DateTime HoraFin { get; set; }
 
         [Required(ErrorMessage = "Fecha limite de postulacion  es requerido")]
-        public DateTime  FechaLimite { get; set; }
+        public DateTime FechaLimite { get; set; }
     }
 }

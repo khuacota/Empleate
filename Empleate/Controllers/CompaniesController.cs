@@ -8,58 +8,55 @@ using System.Threading.Tasks;
 
 namespace Empleate.Controllers
 {
-    [Route("empleados")]
+    [Route("empresas")]
     [ApiController]
-    public class EmpleadosController : ControllerBase
+    public class CompaniesController : ControllerBase
     {
         private readonly AppDbContext _context;
 
-        public EmpleadosController(AppDbContext context)
+        public CompaniesController(AppDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Empleados
         [HttpGet]
-        public IEnumerable<Empleado> GetEmpleados()
+        public IEnumerable<Company> GetEmpresas()
         {
-            return _context.Empleados;
+            return _context.Empresas;
         }
 
-        // GET: api/Empleados/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetEmpleado([FromRoute] int id)
+        public async Task<IActionResult> GetEmpresa([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var empleado = await _context.Empleados.FindAsync(id);
+            var empresa = await _context.Empresas.FindAsync(id);
 
-            if (empleado == null)
+            if (empresa == null)
             {
                 return NotFound();
             }
 
-            return Ok(empleado);
+            return Ok(empresa);
         }
 
-        // PUT: api/Empleados/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutEmpleado([FromRoute] int id, [FromBody] Empleado empleado)
+        public async Task<IActionResult> PutEmpresa([FromRoute] int id, [FromBody] Company empresa)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != empleado.Id)
+            if (id != empresa.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(empleado).State = EntityState.Modified;
+            _context.Entry(empresa).State = EntityState.Modified;
 
             try
             {
@@ -67,7 +64,7 @@ namespace Empleate.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!EmpleadoExists(id))
+                if (!EmpresaExists(id))
                 {
                     return NotFound();
                 }
@@ -81,42 +78,42 @@ namespace Empleate.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostEmpleado([FromBody] Empleado empleado)
+        public async Task<IActionResult> PostEmpresa([FromBody] Company empresa)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            _context.Empleados.Add(empleado);
+
+            _context.Empresas.Add(empresa);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetEmpleado", new { id = empleado.Id }, empleado);
+            return CreatedAtAction("GetEmpresa", new { id = empresa.Id }, empresa);
         }
 
-        // DELETE: api/Empleados/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteEmpleado([FromRoute] int id)
+        public async Task<IActionResult> DeleteEmpresa([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var empleado = await _context.Empleados.FindAsync(id);
-            if (empleado == null)
+            var empresa = await _context.Empresas.FindAsync(id);
+            if (empresa == null)
             {
                 return NotFound();
             }
 
-            _context.Empleados.Remove(empleado);
+            _context.Empresas.Remove(empresa);
             await _context.SaveChangesAsync();
 
-            return Ok(empleado);
+            return Ok(empresa);
         }
 
-        private bool EmpleadoExists(int id)
+        private bool EmpresaExists(int id)
         {
-            return _context.Empleados.Any(e => e.Id == id);
+            return _context.Empresas.Any(e => e.Id == id);
         }
     }
 }

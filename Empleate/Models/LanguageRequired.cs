@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
+﻿
 using Empleate.Validators;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Empleate.Models
 {
-    public class LanguageRequerido
+    public class LanguageRequired
     {
         [Key]
         [Column(Order = 1)]
@@ -21,6 +17,6 @@ namespace Empleate.Models
         public string Idioma { get; set; }
 
         public int OfertaId { get; set; }
-        
+
     }
 }

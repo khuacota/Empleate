@@ -18,14 +18,14 @@ namespace Empleate.Repository
             this.DBContext = context;
         }
         
-        public void CreateEmpleado(Empleado item)
+        public void CreateEmpleado(Employee item)
         {
             this.DBContext.Empleados.Add(item);
 
             this.DBContext.SaveChanges();
         }
 
-        public void Create(Academico item)
+        public void Create(Academic item)
         {
             var result =  this.DBContext.Idiomas.Where(idioma => idioma.EmpleadoId == item.EmpleadoId).ToList();
             if (result.ToArray().Length > 0)
@@ -76,7 +76,7 @@ namespace Empleate.Repository
             this.DBContext.SaveChanges();
         }
 
-        public Boolean ValidTitulo(Titulo titulo)
+        public Boolean ValidTitulo(Degree titulo)
         {
             Boolean res = true;
             Regex regex = new Regex(@"^[a-zA-Z][a-zA-Z0-9]*$");
@@ -86,7 +86,7 @@ namespace Empleate.Repository
             return res;
         }
 
-        public Boolean ValidExp(Experiencia exp)
+        public Boolean ValidExp(Experience exp)
         {
             Boolean res = true;
             res &= DateTime.Compare(exp.Inicio,exp.Fin) < 0;

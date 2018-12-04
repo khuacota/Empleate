@@ -1,28 +1,25 @@
 ﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Empleate.Repository;
 using Empleate.Data;
 using Empleate.Models;
+using Empleate.Repository;
+using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace Empleate.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class OfertaController : Controller
+    public class OffersController : Controller
     {
         private OfertasHandler handler;
 
-        public OfertaController(AppDbContext context)
+        public OffersController(AppDbContext context)
         {
             this.handler = new OfertasHandler(context);
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] OfertaTrabajoModel value)
+        public IActionResult Post([FromBody] OfferJobModel value)
         {
             if (!ModelState.IsValid)
             {
