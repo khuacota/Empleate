@@ -1,24 +1,20 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Empleate.Repository;
-using Empleate.Data;
+﻿using Empleate.Data;
 using Empleate.Models;
+using Empleate.Repository;
+using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace Empleate.Controllers
 {
-    [Route("[controller]")]
+    [Route("Oferta")]
     [ApiController]
-    public class OfertaController : Controller
+    public class OffersController : Controller
     {
-        private OfertasHandler handler;
+        private OffersHandler handler;
 
-        public OfertaController(AppDbContext context)
+        public OffersController(AppDbContext context)
         {
-            this.handler = new OfertasHandler(context);
+            this.handler = new OffersHandler(context);
         }
 
         [HttpGet("search")]

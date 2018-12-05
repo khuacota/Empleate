@@ -10,11 +10,11 @@ namespace Empleate.Controllers
 {
     [Route("empresas")]
     [ApiController]
-    public class EmpresasController : ControllerBase
+    public class CompaniesController : ControllerBase
     {
         private readonly AppDbContext _context;
 
-        public EmpresasController(AppDbContext context)
+        public CompaniesController(AppDbContext context)
         {
             _context = context;
         }
@@ -24,7 +24,7 @@ namespace Empleate.Controllers
         [HttpGet]
         public IEnumerable<Company> GetEmpresas()
         {
-            return _context.Empresas;
+            return _context.Companies;
         }
 
         [HttpGet("{id}")]
@@ -35,7 +35,7 @@ namespace Empleate.Controllers
                 return BadRequest(ModelState);
             }
 
-            var empresa = await _context.Empresas.FindAsync(id);
+            var empresa = await _context.Companies.FindAsync(id);
 
             if (empresa == null)
             {
@@ -87,7 +87,7 @@ namespace Empleate.Controllers
                 return BadRequest(ModelState);
             }
 
-            _context.Empresas.Add(empresa);
+            _context.Companies.Add(empresa);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetEmpresa", new { id = empresa.Id }, empresa);
@@ -101,13 +101,13 @@ namespace Empleate.Controllers
                 return BadRequest(ModelState);
             }
 
-            var empresa = await _context.Empresas.FindAsync(id);
+            var empresa = await _context.Companies.FindAsync(id);
             if (empresa == null)
             {
                 return NotFound();
             }
 
-            _context.Empresas.Remove(empresa);
+            _context.Companies.Remove(empresa);
             await _context.SaveChangesAsync();
 
             return Ok(empresa);
@@ -115,7 +115,7 @@ namespace Empleate.Controllers
 
         private bool EmpresaExists(int id)
         {
-            return _context.Empresas.Any(e => e.Id == id);
+            return _context.Companies.Any(e => e.Id == id);
         }
     }
 }

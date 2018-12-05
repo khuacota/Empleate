@@ -16,24 +16,24 @@ namespace Empleate.Data
 
         public DbSet<Postulation> Postulations { get; set; }
 
-        public DbSet<Employee> Empleados { get; set; }
+        public DbSet<Employee> Employees { get; set; }
 
-        public DbSet<JobOffer> Ofertas { get; set; }
+        public DbSet<JobOffer> Offers { get; set; }
 
-        public DbSet<Experience> Experiencias { get; set; }
+        public DbSet<Experience> Experiences { get; set; }
 
-        public DbSet<LanguageEmployee> Idiomas { get; set; }
+        public DbSet<LanguageEmployee> Languages { get; set; }
 
-        public DbSet<LanguageJob> IdiomasRequeridos { get; set; }
+        public DbSet<LanguageJob> RequiredLanguages { get; set; }
 
-        public DbSet<Title> Titulos { get; set; }
+        public DbSet<Title> Degrees { get; set; }
 
-        public DbSet<SkillEmployee> HabilidadEmp { get; set; }
+        public DbSet<SkillEmployee> EmployeeSkills { get; set; }
 
-        public DbSet<SkillJob> HabilidadesRequeridas { get; set; }
+        public DbSet<SkillJob> RequiredSkills { get; set; }
 
-        public DbSet<Company> Empresas { get; set; }
+        public DbSet<Company> Companies { get; set; }
 
-        public DbSet<OccupationEmp> OcupacionesEmpleados { get; set; }
+        public DbSet<OccupationEmp> EmployeeOccupations { get; set; }
     }
 }
