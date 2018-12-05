@@ -30,7 +30,7 @@ namespace Empleate.Repository
                 employees.AddRange(this.DBContext.Employees.Where(emp => emp.Id == ocupation.EmployeeId));
             }
             return employees;
-            //return DBContext.Profesiones.Where(c => c.Descripcion.Contains(description)).Include(e => e.Employees).FirstOrDefault();
+
         }
     }
 }
