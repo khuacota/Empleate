@@ -37,14 +37,14 @@ namespace Empleate.Controllers
             }
         }
 
-        // GET: api/Empleados
+        // GET: Empleados
         [HttpGet]
         public IEnumerable<Employee> GetEmpleados()
         {
             return _context.Empleados;
         }
 
-        // GET: api/Empleados/5
+        // GET: Empleados/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetEmpleado([FromRoute] int id)
         {
@@ -63,7 +63,7 @@ namespace Empleate.Controllers
             return Ok(empleado);
         }
 
-        // PUT: api/Empleados/5
+        // PUT: Empleados/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutEmpleado([FromRoute] int id, [FromBody] Employee empleado)
         {
@@ -111,7 +111,7 @@ namespace Empleate.Controllers
             return CreatedAtAction("GetEmpleado", new { id = empleado.Id }, empleado);
         }
 
-        // DELETE: api/Empleados/5
+        // DELETE: Empleados/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteEmpleado([FromRoute] int id)
         {
