@@ -7,7 +7,7 @@ namespace Empleate.Models
 {
     public class JobOfferModelGet
     {
-        
+        public int Id { get; set; }
         public string CompanyName { get; set; }
         public string Profession { get; set; }
         public string Description { get; set; }

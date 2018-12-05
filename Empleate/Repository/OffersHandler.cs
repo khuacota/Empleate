@@ -27,9 +27,10 @@ namespace Empleate.Repository
 
         public JobOfferModelGet GetOne(int id)
         {
-            var offers = this.DBContext.Offers.Where(offer => offer.CompanyId == id).ToList();
+            var offers = this.DBContext.Offers.Where(offer => offer.Id == id).ToList();
             var job = new JobOfferModelGet()
             {
+                Id = offers[0].Id,
                 City = offers[0].City,
                 Deadline = offers[0].Deadline,
                 Description = offers[0].Description,
@@ -68,6 +69,7 @@ namespace Empleate.Repository
             foreach (var jobOffer in jobOffers)
             {
                 var job = new JobOfferModelGet() {
+                    Id = jobOffer.Id,
                     City = jobOffer.City,
                     Deadline = jobOffer.Deadline,
                     Description = jobOffer.Description,
