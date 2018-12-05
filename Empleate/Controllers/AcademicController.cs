@@ -18,12 +18,6 @@ namespace Empleate.Controllers
             this.handler = new AcademicHandler(context);
         }
 
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
         [HttpGet("{id}", Name = "Get")]
         public IActionResult Get(int id)
         {
@@ -57,6 +51,6 @@ namespace Empleate.Controllers
 
             return Ok();
         }
-
+        
     }
 }

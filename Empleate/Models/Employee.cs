@@ -50,8 +50,7 @@ namespace Empleate.Models
         [Required(ErrorMessage = "Imagen es requerido")]
         [RegularExpression(RegularExpression.ImageValidation, ErrorMessage = "Formato de imagen invalido")]
         public string Image { get; set; }
-
-        [JsonIgnore]
+        
         public List<OccupationEmp> Occupations{ get; set; }
     }
 }
