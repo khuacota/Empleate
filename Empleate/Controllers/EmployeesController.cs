@@ -12,12 +12,12 @@ namespace Empleate.Controllers
 {
     [Route("empleados")]
     [ApiController]
-    public class EmpleadosController : ControllerBase
+    public class EmployeesController : ControllerBase
     {
         private readonly AppDbContext _context;
         private EmployeeHandler handler;
 
-        public EmpleadosController(AppDbContext context)
+        public EmployeesController(AppDbContext context)
         {
             _context = context;
             this.handler = new EmployeeHandler(context);
@@ -37,14 +37,12 @@ namespace Empleate.Controllers
             }
         }
 
-        // GET: Empleados
         [HttpGet]
         public IEnumerable<Employee> GetEmpleados()
         {
-            return _context.Empleados;
+            return _context.Employees;
         }
 
-        // GET: Empleados/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetEmpleado([FromRoute] int id)
         {
@@ -53,7 +51,7 @@ namespace Empleate.Controllers
                 return BadRequest(ModelState);
             }
 
-            var empleado = await _context.Empleados.FindAsync(id);
+            var empleado = await _context.Employees.FindAsync(id);
 
             if (empleado == null)
             {
@@ -63,7 +61,6 @@ namespace Empleate.Controllers
             return Ok(empleado);
         }
 
-        // PUT: Empleados/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutEmpleado([FromRoute] int id, [FromBody] Employee empleado)
         {
@@ -105,13 +102,12 @@ namespace Empleate.Controllers
             {
                 return BadRequest(ModelState);
             }
-            _context.Empleados.Add(empleado);
+            _context.Employees.Add(empleado);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetEmpleado", new { id = empleado.Id }, empleado);
         }
 
-        // DELETE: Empleados/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteEmpleado([FromRoute] int id)
         {
@@ -120,13 +116,13 @@ namespace Empleate.Controllers
                 return BadRequest(ModelState);
             }
 
-            var empleado = await _context.Empleados.FindAsync(id);
+            var empleado = await _context.Employees.FindAsync(id);
             if (empleado == null)
             {
                 return NotFound();
             }
 
-            _context.Empleados.Remove(empleado);
+            _context.Employees.Remove(empleado);
             await _context.SaveChangesAsync();
 
             return Ok(empleado);
@@ -134,7 +130,7 @@ namespace Empleate.Controllers
 
         private bool EmpleadoExists(int id)
         {
-            return _context.Empleados.Any(e => e.Id == id);
+            return _context.Employees.Any(e => e.Id == id);
         }
     }
 }

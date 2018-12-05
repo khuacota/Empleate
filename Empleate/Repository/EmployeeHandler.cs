@@ -17,20 +17,20 @@ namespace Empleate.Repository
 
         public ICollection<Employee> filterByOccupation(string[] searchWords)
         {
-            var occupationEmployee = this.DBContext.OcupacionesEmpleados.ToList();
+            var occupationEmployee = this.DBContext.EmployeeOccupations.ToList();
             var ocupations = new List<OccupationEmp>();
             foreach(var searchWord in searchWords)
             {
 
-                ocupations.AddRange(this.DBContext.OcupacionesEmpleados.Where(oc => oc.Occupation.Contains(searchWord)));
+                ocupations.AddRange(this.DBContext.EmployeeOccupations.Where(oc => oc.Occupation.Contains(searchWord)));
             }
             var employees = new List<Employee>();
             foreach (var ocupation in ocupations)
             {
-                employees.AddRange(this.DBContext.Empleados.Where(emp => emp.Id == ocupation.EmployeeId));
+                employees.AddRange(this.DBContext.Employees.Where(emp => emp.Id == ocupation.EmployeeId));
             }
             return employees;
-            //return DBContext.Profesiones.Where(c => c.Descripcion.Contains(description)).Include(e => e.Empleados).FirstOrDefault();
+            //return DBContext.Profesiones.Where(c => c.Descripcion.Contains(description)).Include(e => e.Employees).FirstOrDefault();
         }
     }
 }

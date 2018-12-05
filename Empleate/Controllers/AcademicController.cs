@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Empleate.Data;
 using Empleate.Models;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using Empleate.Repository;
-using Empleate.Data;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
 
 namespace Empleate.Controllers
 {
@@ -33,10 +30,9 @@ namespace Empleate.Controllers
             {
                 return BadRequest(e.Message);
             }
-            
+
         }
 
-        // POST: api/Academic
         [HttpPost]
         public IActionResult Post([FromBody] Academic value)
         {
@@ -48,7 +44,7 @@ namespace Empleate.Controllers
             {
                 this.handler.Create(value);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return BadRequest(e.Message);
             }

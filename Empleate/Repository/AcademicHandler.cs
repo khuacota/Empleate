@@ -21,11 +21,11 @@ namespace Empleate.Repository
         public Academic GetOne(int id)
         {
             var academic = new Academic();
-            var languages = this.DBContext.Idiomas.Where(idioma => idioma.EmployeeId == id).ToList();
-            var skills = this.DBContext.HabilidadEmp.Where(idioma => idioma.EmployeeId == id).ToList();
-            var degrees = this.DBContext.Titulos.Where(idioma => idioma.EmployeeId == id).ToList();
-            var experiences = this.DBContext.Experiencias.Where(idioma => idioma.EmployeeId == id).ToList();
-            var occupations = this.DBContext.OcupacionesEmpleados.Where(oc => oc.EmployeeId == id).ToList();
+            var languages = this.DBContext.Languages.Where(idioma => idioma.EmployeeId == id).ToList();
+            var skills = this.DBContext.EmployeeSkills.Where(idioma => idioma.EmployeeId == id).ToList();
+            var degrees = this.DBContext.Degrees.Where(idioma => idioma.EmployeeId == id).ToList();
+            var experiences = this.DBContext.Experiences.Where(idioma => idioma.EmployeeId == id).ToList();
+            var occupations = this.DBContext.EmployeeOccupations.Where(oc => oc.EmployeeId == id).ToList();
             academic.Degrees = degrees;
             academic.Skills = skills;
             academic.Languages = languages;
@@ -36,7 +36,7 @@ namespace Empleate.Repository
 
         public void Create(Academic item)
         {
-            var result =  this.DBContext.Idiomas.Where(idioma => idioma.EmployeeId == item.EmployeeId).ToList();
+            var result =  this.DBContext.Languages.Where(idioma => idioma.EmployeeId == item.EmployeeId).ToList();
             
             if (item.Languages.Count < 1)
             {
@@ -89,25 +89,25 @@ namespace Empleate.Repository
                 }
                     
             }
-            this.DBContext.Idiomas.AddRange(item.Languages);
+            this.DBContext.Languages.AddRange(item.Languages);
             if (item.Experiences.LongCount() != 0)
             {
-                this.DBContext.Experiencias.AddRange(item.Experiences);
+                this.DBContext.Experiences.AddRange(item.Experiences);
 
             }
             if (item.Degrees.LongCount() != 0)
             {
-                this.DBContext.Titulos.AddRange(item.Degrees);
+                this.DBContext.Degrees.AddRange(item.Degrees);
 
             }
             if (item.Occupations.LongCount() != 0)
             {
-                this.DBContext.OcupacionesEmpleados.AddRange(item.Occupations);
+                this.DBContext.EmployeeOccupations.AddRange(item.Occupations);
 
             }
             if (item.Skills.LongCount() != 0)
             {
-                this.DBContext.HabilidadEmp.AddRange(item.Skills);
+                this.DBContext.EmployeeSkills.AddRange(item.Skills);
             }
             this.DBContext.SaveChanges();
         }
