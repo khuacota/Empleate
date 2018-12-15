@@ -13,6 +13,7 @@ namespace Empleate.Repository
     public class OffersHandler
     {
         protected AppDbContext DBContext { get; set; }
+
         public OffersHandler(AppDbContext context)
         {
             this.DBContext = context;
@@ -128,6 +129,12 @@ namespace Empleate.Repository
             res &= oferta.MinExperience >= 0 && oferta.MinExperience <= 20;
             res &= DateTime.Compare(oferta.Deadline, DateTime.Today) > 0;
             return res;
+        }
+
+        public IList<JobOffer> GetRecentOffers() {
+            IList<JobOffer> recentOffers;
+            recentOffers = this.DBContext.Offers.ToList().OrderBy(o => o.Deadline).ToList();
+            return recentOffers.Take(3).ToList();
         }
     }
 }
