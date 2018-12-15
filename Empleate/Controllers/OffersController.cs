@@ -3,6 +3,8 @@ using Empleate.Models;
 using Empleate.Repository;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Empleate.Controllers
 {
@@ -77,5 +79,11 @@ namespace Empleate.Controllers
 
             return Ok();
         }
+
+        [HttpGet("recientes")]
+        public IActionResult GetRecentOffers() {
+            IList<JobOffer> recentOffers = this.handler.GetRecentOffers();
+            return Ok(recentOffers);
+        } 
     }
 }
