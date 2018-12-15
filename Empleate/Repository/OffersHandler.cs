@@ -1,5 +1,6 @@
 ﻿using Empleate.Data;
 using Empleate.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -135,6 +136,17 @@ namespace Empleate.Repository
             IList<JobOffer> recentOffers;
             recentOffers = this.DBContext.Offers.ToList().OrderBy(o => o.Deadline).ToList();
             return recentOffers.Take(3).ToList();
+        }
+
+        public IList<Employee> GetEmployeesPostulation(int id) {
+            IList<Postulation> postulations;
+            IList<Employee> employees = new List<Employee>();
+            postulations = this.DBContext.Postulations.Where(e => e.OfferId == id).Include(e => e.Employee).ToList();
+            foreach(Postulation postulation in postulations)
+            {
+                employees.Add(postulation.Employee);
+            }
+            return employees;
         }
     }
 }

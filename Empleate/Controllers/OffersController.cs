@@ -84,6 +84,12 @@ namespace Empleate.Controllers
         public IActionResult GetRecentOffers() {
             IList<JobOffer> recentOffers = this.handler.GetRecentOffers();
             return Ok(recentOffers);
-        } 
+        }
+
+        [HttpGet("postulaciones/{id}")]
+        public IActionResult GetPostulations([FromRoute] int id) {
+            var res = this.handler.GetEmployeesPostulation(id);
+            return Ok(res);
+        }
     }
 }
