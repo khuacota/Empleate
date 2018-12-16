@@ -45,6 +45,24 @@ namespace Empleate.Controllers
             return Ok(empresa);
         }
 
+        [HttpGet("{id}")]
+        public  IActionResult GetCompanyByUser([FromRoute] string id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var empresa =  _context.Companies.Where(c =>c.IdUser == id ).ToList();
+
+            if (empresa == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(empresa);
+        }
+
         [HttpPut("{id}")]
         public async Task<IActionResult> PutEmpresa([FromRoute] int id, [FromBody] Company empresa)
         {

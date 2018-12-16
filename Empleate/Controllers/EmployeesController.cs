@@ -61,6 +61,24 @@ namespace Empleate.Controllers
             return Ok(empleado);
         }
 
+        [HttpGet("{id}")]
+        public IActionResult GetEmployeeUser([FromRoute] string id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var empleado = _context.Employees.Where(e => e.IdUser == id).ToList();
+
+            if (empleado == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(empleado);
+        }
+
         [HttpPut("{id}")]
         public async Task<IActionResult> PutEmpleado([FromRoute] int id, [FromBody] Employee empleado)
         {

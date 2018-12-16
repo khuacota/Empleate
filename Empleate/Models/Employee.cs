@@ -14,6 +14,9 @@ namespace Empleate.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
+        [Required(ErrorMessage = "Usuario es requerido")]
+        public string IdUser { get; set; }
+
         [Required(ErrorMessage = "Nombre es requerido")]
         [RegularExpression(RegularExpression.TextValidation, ErrorMessage = "Nombre debe ser texto")]
         public string Name { get; set; }
@@ -50,7 +53,10 @@ namespace Empleate.Models
         [Required(ErrorMessage = "Imagen es requerido")]
         [RegularExpression(RegularExpression.ImageValidation, ErrorMessage = "Formato de imagen invalido")]
         public string Image { get; set; }
-        
+
+        [ForeignKey("IdUser")]
+        public User UserID { get; set; }
+
         public List<OccupationEmp> Occupations{ get; set; }
     }
 }

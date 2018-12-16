@@ -11,6 +11,9 @@ namespace Empleate.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
+        [Required(ErrorMessage = "Usuario es requerido")]
+        public string IdUser { get; set; }
+
         [Required(ErrorMessage = "Nombre es requerido")]
         public string Name { get; set; }
 
@@ -35,6 +38,8 @@ namespace Empleate.Models
         [RegularExpression(RegularExpression.ImageValidation, ErrorMessage = "Formato de imagen invalido")]
         public string Image { get; set; }
 
+        [ForeignKey("IdUser")]
+        public User UserID { get; set; }
 
     }
 }
