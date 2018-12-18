@@ -45,7 +45,7 @@ namespace Empleate.Controllers
             return Ok(empresa);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("user/{id}")]
         public  IActionResult GetCompanyByUser([FromRoute] string id)
         {
             if (!ModelState.IsValid)

@@ -61,7 +61,7 @@ namespace Empleate.Controllers
             return Ok(empleado);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("user/{id}")]
         public IActionResult GetEmployeeUser([FromRoute] string id)
         {
             if (!ModelState.IsValid)
