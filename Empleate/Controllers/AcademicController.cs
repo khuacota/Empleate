@@ -52,7 +52,7 @@ namespace Empleate.Controllers
             return Ok();
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         public IActionResult Edit(int id, [FromBody] Academic academic) {
             if (!ModelState.IsValid){
                 return BadRequest(ModelState);
