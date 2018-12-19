@@ -107,6 +107,16 @@ namespace Empleate.Repository
                 throw new Exception("invalid data");
             }
             this.DBContext.Offers.Add(oferta);
+            this.DBContext.SaveChanges();
+            var offerId = this.DBContext.Offers.Last().Id;
+            foreach(var lang in item.ReqLanguages)
+            {
+                lang.OfferId = offerId;
+            }
+            foreach (var skill in item.ReqSkills)
+            {
+                skill.OfferId = offerId;
+            }
             this.DBContext.RequiredLanguages.AddRange(item.ReqLanguages);
             if (item.ReqSkills != null)
             {
