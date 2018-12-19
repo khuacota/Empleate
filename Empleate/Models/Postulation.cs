@@ -15,7 +15,7 @@ namespace Empleate.Models
         public int Id { get; set; }
 
         public int OfferId { get; set; }
-        [ForeignKey("EmployeeId")]
+        [ForeignKey("OfferId")]
         public JobOffer Offer { get; set; }
 
         public int EmployeeId { get; set; }
