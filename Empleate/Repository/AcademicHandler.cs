@@ -1,5 +1,6 @@
 ﻿using Empleate.Data;
 using Empleate.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +33,29 @@ namespace Empleate.Repository
             academic.Experiences = experiences;
             academic.Occupations = occupations;
             return academic;
+        }
+
+        public void Edit(Academic academic){
+            Employee employee = this.DBContext.Employees.Include(emp => emp.Languages)
+                .Include(emp => emp.Skills).Include(emp => emp.Titles).Include(emp => emp.Occupations)
+                .Include(emp => emp.Experiences).SingleOrDefault(x => x.Id == academic.EmployeeId);
+            if (employee == null)
+            {
+                throw new Exception("Empleado no existe");
+            }
+            List<LanguageEmployee> languageEmployees = employee.Languages;
+            this.DBContext.Languages.RemoveRange(languageEmployees);
+            List<Experience> experiences = employee.Experiences;
+            this.DBContext.Experiences.RemoveRange(experiences);
+            List<SkillEmployee> skills = employee.Skills;
+            this.DBContext.EmployeeSkills.RemoveRange(skills);
+            List<OccupationEmp> occupations = employee.Occupations;
+            this.DBContext.EmployeeOccupations.RemoveRange(occupations);
+            List<Title> titles = employee.Titles;
+            this.DBContext.Degrees.RemoveRange(titles);
+            this.DBContext.SaveChanges();
+            this.Create(academic);
+
         }
 
         public void Create(Academic item)
@@ -109,6 +133,7 @@ namespace Empleate.Repository
             {
                 this.DBContext.EmployeeSkills.AddRange(item.Skills);
             }
+
             this.DBContext.SaveChanges();
         }
 

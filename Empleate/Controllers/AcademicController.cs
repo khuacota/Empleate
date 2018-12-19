@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace Empleate.Controllers
 {
-    [Route("[controller]")]
+    [Route("academic")]
     [ApiController]
     public class AcademicController : ControllerBase
     {
@@ -49,6 +49,15 @@ namespace Empleate.Controllers
                 return BadRequest(e.Message);
             }
 
+            return Ok();
+        }
+
+        [HttpPut]
+        public IActionResult Edit(int id, [FromBody] Academic academic) {
+            if (!ModelState.IsValid){
+                return BadRequest(ModelState);
+            }
+            handler.Edit(academic);
             return Ok();
         }
         

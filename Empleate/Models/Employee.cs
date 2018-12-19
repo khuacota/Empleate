@@ -58,5 +58,14 @@ namespace Empleate.Models
         public User UserID { get; set; }
 
         public List<OccupationEmp> Occupations{ get; set; }
+        
+        public List<LanguageEmployee> Languages {get; set;}
+
+        public List<SkillEmployee> Skills {get; set;}
+
+        public List<Experience> Experiences {get; set;}
+
+        public List<Title> Titles {get; set;}
+
     }
 }
