@@ -22,6 +22,11 @@ namespace Empleate.Repository
 
         public void Postulate(Postulation value)
         {
+            var list = this.DBContext.Postulations.Where(pos => pos.OfferId == value.OfferId && pos.EmployeeId == value.EmployeeId).ToList();
+            if(list.Count > 0)
+            {
+                throw new Exception("ya postulaste al trabajo");
+            }
             this.DBContext.Postulations.Add(value);
             this.DBContext.SaveChanges();
 
