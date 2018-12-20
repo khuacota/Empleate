@@ -1,4 +1,5 @@
-﻿insert into Employees (Name, LastName, Birthdate, Gender, CivilStatus, Phone, City, Direction, Email, Image) values
+﻿
+insert into Employees (Name, LastName, Birthdate, Gender, CivilStatus, Phone, City, Direction, Email, Image) values
 ('Karem', 'Huacota', CAST('3-11-1991 6:30:00 PM' AS DATETIME2), 'Femenino', 'Soltero', 72252681, 'Cochabamba', 'Quijarro 89', 'karem.huacota@gmailcom', 'image.png'),
 ('Gary', 'Antezana', CAST('3-11-1992 6:30:00 PM' AS DATETIME2), 'Masculino', 'Soltero', 73499111, 'Cochabamba', 'America 120', 'gary.antezana@gmail.com', 'image.png'),
 ('Gustavo', 'Lavadenz', CAST('3-15-1993 6:30:00 PM' AS DATETIME2), 'Masculino', 'Soltero', 73499112, 'Tarija', 'Juan 23', 'gustavo.lavadenz@gmail.com', 'image.png'),
@@ -17,3 +18,24 @@ insert into Offers (CompanyId, Profession, Description, MinExperience, City, Sta
 (1, 'Contador', 'Conocimientos en contabilidad e impuestos', 3, 'Cochabamba', CAST('12-21-2018 8:00:00 AM' AS DATETIME2), CAST('12-21-2018 6:30:00 PM' AS DATETIME2), CAST('1-21-2019 6:30:00 PM' AS DATETIME2)),
 (2, 'Docente', 'Docente de calculo 1 y 2', 2, 'Cochabamba', CAST('12-21-2018 8:00:00 AM' AS DATETIME2), CAST('12-21-2018 6:30:00 PM' AS DATETIME2), CAST('1-21-2019 6:30:00 PM' AS DATETIME2)),
 (2, 'Docente', 'Docente de redes', 3, 'Cochabamba', CAST('12-21-2018 8:00:00 AM' AS DATETIME2), CAST('12-21-2018 6:30:00 PM' AS DATETIME2), CAST('1-21-2019 6:30:00 PM' AS DATETIME2));
+
+insert into EmployeeSkills (Skill, EmplyeeId) values
+(ProgramacionWeb,1),
+(Angular6,1),
+(electronica,2),
+(dupsten,2);
+
+insert into Experiences(Place, Position, inicio, Fin, EmployeeId) values
+(Suresoft, tester, CAST('12-21-2015 8:00:00 AM' AS DATETIME2),CAST('12-21-2016 8:00:00 AM' AS DATETIME2),1),
+(Microsoft,MainProgramer, CAST('12-21-2014 8:00:00 AM' AS DATETIME2),CAST('12-21-2016 8:00:00 AM' AS DATETIME2),2),
+(Apple, Designer, CAST('12-21-2015 8:00:00 AM' AS DATETIME2),CAST('12-21-2016 8:00:00 AM' AS DATETIME2),1),
+(Ubisoft, Tester, CAST('12-21-2013 8:00:00 AM' AS DATETIME2),CAST('12-21-2014 8:00:00 AM' AS DATETIME2),2);
+
+insert into Languages(Language, EmployeeId) values
+(español,1),
+(ingles,1),
+(español,02),
+(ingles,2);
+
+
+
